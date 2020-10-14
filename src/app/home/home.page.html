@@ -19,9 +19,11 @@
     <div id="list">
       <ion-list>
         <ion-item *ngFor="let item of list">
-          <ion-label (click)="onListItemClick(item)">{{ item.label }}</ion-label>
+          <ion-label (click)="onListItemClick(item)" class="noselect pointerCursor">{{ item.label }}</ion-label>
         </ion-item>
       </ion-list>
     </div>
+
+    <div id="something"></div>
   </div>
 </ion-content>

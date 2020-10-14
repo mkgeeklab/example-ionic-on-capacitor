@@ -1,11 +1,5 @@
 #container {
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 #container strong {
@@ -31,4 +25,14 @@
   height: 200px;
   overflow-x: hidden;
   overflow-y: scroll;
+}
+
+#hoge {
+  background-color: gray;
+}
+
+#something {
+  background-color: green;
+  width:80%;
+  height: 600px;
 }

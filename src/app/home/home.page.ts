@@ -12,33 +12,26 @@ export class HomePage implements OnInit {
   list: any[] = [];
   counter: number = 0;
 
-  constructor() {
-    // const map: Map = new Plugins.GoogleMaps.Map();
-    // Plugins.GoogleMaps.echo({
-    //   value: 'hello'
-    // }).then((result) => {
-    //   console.log(result);
-    // });
-    // map.someMethod();
-    // Plugins.GoogleMaps.echo({
-    //     value: 'Hello World'
-    //   })
-    //   .then((result: any) => {
-    //     alert(result.value);
-    //   });
-  }
+  constructor() { }
 
   ngOnInit() {
     const mapDiv = document.getElementById('hoge');
-    console.log(new MapView(mapDiv));
+    const map: MapView = new MapView(mapDiv, {
+      camera: {
+        target: {lat: 38, lng: 137},
+        zoom: 0
+      },
+      mapTypeId: 'normal'
+    });
   }
   onListItemClick(item: any) {
     if (this.list.length === 0) return;
 
     const idx: number = this.list.indexOf(item);
-    this.list.splice(item, 1);
+    this.list.splice(idx, 1);
   }
   onButtonClick() {
+  console.log("--->onButtonClick");
     this.list.push({
       idx: this.counter,
       label: `count:${++this.counter}`
