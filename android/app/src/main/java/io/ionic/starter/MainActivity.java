@@ -1,9 +1,13 @@
 package io.ionic.starter;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 
 import com.getcapacitor.BridgeActivity;
 import com.getcapacitor.Plugin;
+import com.getcapacitor.PluginHandle;
 
 import java.util.ArrayList;
 
@@ -21,5 +25,14 @@ public class MainActivity extends BridgeActivity {
 
       add(OpenGoogleMaps.class);
     }});
+  }
+
+  @Override
+  public void onConfigurationChanged(@NonNull Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+
+    PluginHandle pluginHandle = this.bridge.getPlugin("OpenGoogleMaps");
+    OpenGoogleMaps openGoogleMaps = (OpenGoogleMaps)pluginHandle.getInstance();
+    openGoogleMaps.onConfigurationChanged(newConfig);
   }
 }

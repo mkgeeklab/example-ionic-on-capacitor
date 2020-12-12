@@ -18,7 +18,7 @@ export class HomePage implements OnInit {
     const mapDiv = document.getElementById('hoge');
     const map: MapView = new MapView(mapDiv, {
       camera: {
-        target: {lat: 38, lng: 137},
+        center: {lat: 38, lng: 137},
         zoom: 0
       },
       mapTypeId: 'normal'
