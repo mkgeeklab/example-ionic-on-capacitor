@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Plugins } from '@capacitor/core';
-import { GoogleMaps, BaseClass, MapView } from '@test-plugin/capacitor';
+import { OpenGoogleMaps, BaseClass, MapView } from '@test-plugin/capacitor';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  styleUrls: ['home.page.scss']
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, AfterViewInit {
+  @ViewChild('mapCanvas') mapRef: ElementRef;
+  map: MapView;
 
   list: any[] = [];
   counter: number = 0;
@@ -15,14 +17,9 @@ export class HomePage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const mapDiv = document.getElementById('hoge');
-    const map: MapView = new MapView(mapDiv, {
-      camera: {
-        center: {lat: 38, lng: 137},
-        zoom: 0
-      },
-      mapTypeId: 'normal'
-    });
+  }
+  ngAfterViewInit() {
+    this.map = this.mapRef.nativeElement;
   }
   onListItemClick(item: any) {
     if (this.list.length === 0) return;
@@ -30,8 +27,14 @@ export class HomePage implements OnInit {
     const idx: number = this.list.indexOf(item);
     this.list.splice(idx, 1);
   }
+  onMapClick(event) {
+    console.log("--->onMapClick", event);
+  }
+  onMapDrag() {
+    console.log("--->onMapDrag");
+  }
   onButtonClick() {
-  console.log("--->onButtonClick");
+    console.log("--->onButtonClick");
     this.list.push({
       idx: this.counter,
       label: `count:${++this.counter}`

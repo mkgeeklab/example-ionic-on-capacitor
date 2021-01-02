@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OpenGoogleMapsInitializer } from '@test-plugin/capacitor';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
       console.log("Register custom capacitor plugins");
+      OpenGoogleMapsInitializer();
   }
 
 }
