@@ -9,6 +9,18 @@ import { OpenGoogleMapsInitializer } from '@test-plugin/capacitor';
 export class AppComponent implements OnInit {
   constructor() {}
 
+  public appPages = [
+    {
+      title: 'Home',
+      url: '/home',
+      icon: 'home'
+    },
+
+    {
+      title: 'No map page',
+      url: '/no-map'
+    },
+  ];
   ngOnInit() {
       console.log("Register custom capacitor plugins");
       OpenGoogleMapsInitializer();

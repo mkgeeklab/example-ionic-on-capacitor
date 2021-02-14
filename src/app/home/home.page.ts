@@ -30,8 +30,8 @@ export class HomePage implements OnInit, AfterViewInit {
   onMapClick(event) {
     console.log("--->onMapClick", event);
   }
-  onMapDrag() {
-    console.log("--->onMapDrag");
+  onMapDrag(event) {
+    console.log("--->onMapDrag", event);
   }
   onButtonClick() {
     console.log("--->onButtonClick");

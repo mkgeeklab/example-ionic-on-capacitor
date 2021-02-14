@@ -4,10 +4,10 @@
     <ogmp-map-view
       id="mapCanvas"
       #mapCanvas
-      lat="43.0741704" lng="-89.3809802" zoom="14"
-      mapType="terrian"
-      (mapclick)="onMapClick($event)"
-      (mapdrag)="onMapDrag()">
+      center="43.0741704, -89.3809802" zoom="14"
+      mapType="roadmap"
+      (mapClick)="onMapClick($event)"
+      (mapDrag)="onMapDrag($event)">
     </ogmp-map-view>
     <ion-button color="primary" (click)="onButtonClick()">Add</ion-button>
     <div id="list">

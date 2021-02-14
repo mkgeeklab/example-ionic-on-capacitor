@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'no-map',
+    loadChildren: () => import('./no-map/no-map.module').then( m => m.NoMapPageModule)
+  },
 ];
 
 @NgModule({
