@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OpenGoogleMapsInitializer } from '@test-plugin/capacitor';
+import { OpenGoogleMapsInitializer } from '@open-google-maps-plugin/capacitor';
 
 @Component({
   selector: 'app-root',
