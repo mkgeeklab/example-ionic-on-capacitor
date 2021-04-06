@@ -9,8 +9,8 @@
       "launchShowDuration": 0
     },
     "OpenGoogleMaps": {
-      "GOOGLE_MAPS_ANDROID_API_KEY": "AIzaSyBpNKkll5yJ2YbS-i0dE5yIdEk8sef-S6g",
-      "GOOGLE_MAPS_IOS_API_KEY": "AIzaSyBpNKkll5yJ2YbS-i0dE5yIdEk8sef-S6g"
+      "GOOGLE_MAPS_ANDROID_API_KEY": "",
+      "GOOGLE_MAPS_IOS_API_KEY": ""
     }
   },
   "cordova": {}

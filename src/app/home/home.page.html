@@ -5,35 +5,30 @@
       #mapCanvas
       center="43.0741704, -89.3809802" zoom="15"
       mapType="roadmap"
-      (click)="onMapClick($event)"
-      (drag)="onMapDrag($event)">
+      (click)="onMapClick($event)">
       <div slot="html">
         <ion-button color="primary" (click)="onButtonClick()">Add</ion-button>
       </div>
 
       <ogmp-marker
-        class="marker1"
-        (click)="onMarkerClick($event)"
-        (dragend)="onMapDrag($event)"
+        class="car draggable"
+        (dragend)="onMarkerDrop($event)"
         position="43.0763334001421, -89.38346928996582"></ogmp-marker>
 
       <ogmp-marker
-        class="marker1"
-        (click)="onMarkerClick($event)"
+        class="cafe"
         position="43.0718505758718, -89.38437051219482"></ogmp-marker>
 
       <ogmp-marker
-        class="marker2"
-        (click)="onMarkerClick($event)"
+        class="cafe"
         position="43.07658417782822, -89.37231130046386"></ogmp-marker>
 
       <ogmp-marker
-        class="marker2"
-        (click)="onMarkerClick($event)"
+        class="bar"
         position="43.08191296103446, -89.3734700147583"></ogmp-marker>
 
       <ogmp-marker
-        class="marker3"
+        class="bar"
         (click)="onMarkerClick($event)"
         position="43.075737799024346, -89.39428395671386"></ogmp-marker>
     </ogmp-map-view>

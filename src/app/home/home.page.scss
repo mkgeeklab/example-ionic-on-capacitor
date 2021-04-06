@@ -43,20 +43,21 @@
   height: 300px;
 }
 
-ogmp-marker {
-  --draggable: true;
+.clickable {
   --clickable: true;
 }
 
-
-ogmp-marker.marker1 {
-  --icon: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/134893/pin-red.svg");
+.draggable {
+  --draggable: true;
+}
+.car {
+  --icon: url("https://www.iconninja.com/files/114/190/511/car-vehicle-citroen-icon.svg");
 }
 
-ogmp-marker.marker2 {
+.cafe {
   --icon: url("/assets/coffee-cup.svg");
 }
 
-ogmp-marker.marker3 {
+.bar {
   --icon: url("/assets/beer.png");
 }
