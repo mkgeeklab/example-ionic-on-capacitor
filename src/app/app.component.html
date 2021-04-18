@@ -3,8 +3,8 @@
     <ion-content>
       <ion-list id="inbox-list">
         <ion-list-header>Demo</ion-list-header>
-        <ion-note>@open-google-maps-plugin on Capacitor</ion-note>
-        
+        <ion-note>Examples</ion-note>
+
         <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
           <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
             <ion-icon slot="start" [name]="p.icon"></ion-icon>
@@ -21,7 +21,7 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>Inbox</ion-title>
+      <ion-title>Examples</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-router-outlet id="main-content"></ion-router-outlet>

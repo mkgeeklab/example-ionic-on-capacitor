@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'no-map',
     loadChildren: () => import('./no-map/no-map.module').then( m => m.NoMapPageModule)
   },
+  {
+    path: 'markers',
+    loadChildren: () => import('./markers/markers.module').then( m => m.MarkersPageModule)
+  },
 ];
 
 @NgModule({

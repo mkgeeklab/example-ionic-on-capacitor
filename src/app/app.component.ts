@@ -20,10 +20,16 @@ export class AppComponent implements OnInit {
       title: 'No map page',
       url: '/no-map'
     },
+
+    {
+      title: 'Markers',
+      url: '/markers'
+    },
   ];
   ngOnInit() {
-      console.log("Register custom capacitor plugins");
-      OpenGoogleMapsInitializer();
+    OpenGoogleMapsInitializer({
+      'API_KEY_FOR_BROWSER': "AIzaSyBpNKkll5yJ2YbS-i0dE5yIdEk8sef-S6g"
+    });
   }
 
 }

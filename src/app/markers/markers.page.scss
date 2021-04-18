@@ -1,0 +1,15 @@
+.starbucks {
+  --icon: url("/assets/green-coffee-icon.svg");
+}
+.active {
+  --icon: url("/assets/red-coffee-icon.svg") !important;
+}
+
+#infoCard {
+  position: absolute;
+  bottom: -50%;
+  left: 5%;
+  right: 5%;
+  min-height: 100px;
+  z-index: 10;
+}
