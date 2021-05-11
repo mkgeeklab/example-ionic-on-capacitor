@@ -29,22 +29,30 @@ export class MarkersPage implements OnInit {
   }
 
   ngOnInit() {
+
+    // Load starbucks_locations.json
     this.getStores().subscribe((stores: StarbucksPlace[]) => {
       this.stores = stores;
 
+      // Pick up the position values
       const locations: ILatLng[] = [];
       stores.forEach(store => {
         locations.push(store.position);
       });
 
+      // pass to the fitBounds()
       this.map.fitBounds(locations);
     });
   }
 
   onMarkerSelect(event: CustomEvent) {
+
+    // If there is a previous selected marker, remove the " active" class.
     if (this.activeMarker) {
       this.activeMarker.className = this.activeMarker.className.replace(' active', '');
     }
+
+    // If a marker is selected, add " active" CSS class.
     const marker: Marker = event.target as Marker;
     marker.className += ' active';
     this.activeMarker = marker;

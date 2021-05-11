@@ -1,6 +1,12 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Plugins } from '@capacitor/core';
-import { OpenGoogleMaps, MapView, LatLngBounds } from '@open-google-maps-plugin/capacitor';
+import {
+  OpenGoogleMaps,
+  MapView,
+  Marker,
+  LatLngBounds,
+  InfoWindow
+} from '@open-google-maps-plugin/capacitor';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +17,37 @@ export class HomePage implements OnInit, AfterViewInit {
   @ViewChild('mapCanvas') mapRef: ElementRef;
   map: MapView;
 
+  @ViewChild('infoWnd1') infoWnd1Ref: ElementRef;
+  infoWnd1: InfoWindow;
+
   constructor() { }
 
   ngOnInit() {
   }
   ngAfterViewInit() {
     this.map = this.mapRef.nativeElement;
+    this.infoWnd1 = this.infoWnd1Ref.nativeElement;
   }
 
+  /**
+   * Invoked when you click on a marker.
+   * You can get the clicked marker instance from event.target property.
+   *
+   * In this example, get the string from the message attribute using getAttribute() method.
+   * Because the message atrribute is not defined as regular property,
+   * you need to access using getAttribute() method.
+   */
+  onMarkerClick(event) {
+    const marker: Marker = event.target as Marker;
+    const message: string = marker.getAttribute('message');
+
+    this.infoWnd1.setContent(message);
+    this.infoWnd1.open(marker);
+
+
+    console.log("--->onMarkerClick", marker.getAttribute('message'));
+
+  }
   onMapClick(event) {
     console.log("--->onMapClick", event);
   }
