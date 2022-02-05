@@ -4,6 +4,7 @@
   flex-direction: row;
   margin-top: 56px;
   height: 100%;
+  position: relative;
 }
 
 #container strong {
@@ -33,8 +34,20 @@
 
 #mapCanvas {
   width: 100%;
-  height: 100%;
+  height: 90%;
   flex: 0 0 100%;
+  /*
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  */
+}
+
+#rotateBtn {
+  position: absolute;
+  z-index: 2;
 }
 
 .something {
@@ -51,7 +64,7 @@
   --draggable: true;
 }
 .car {
-  --icon: url("https://www.iconninja.com/files/114/190/511/car-vehicle-citroen-icon.svg");
+  --icon: url("/assets/beer.png");
 }
 
 .cafe {
@@ -62,4 +75,12 @@
 
 .bar {
   --icon: url("/assets/beer.png");
+}
+
+.custom_icon {
+  --icon: url("/assets/custom_icon.png");
+  --anchor-point-x: 0.21;
+  --anchor-point-y: 0.96;
+  --info-anchor-point-x: 0.83;
+  --info-anchor-point-y: 0.08;
 }

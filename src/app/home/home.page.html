@@ -1,30 +1,37 @@
 <ion-content [fullscreen]="true">
   <div id="container">
+    <ion-button
+      id="rotateBtn"
+      (click)="onRotateButtonClick($even)">Rotate</ion-button>
+
     <ogmp-map-view
       id="mapCanvas"
+      jsMapId="283fb0722209eb1e"
       #mapCanvas
-      center="43.0741704, -89.3809802" zoom="15"
+      center="43.0763334001421, -89.38346928996582" zoom="20"
       mapType="roadmap"
       (click)="onMapClick($event)">
 
-      <ogmp-info-window #infoWnd1></ogmp-info-window>
+      <ogmp-info-window #infoWnd1 id="1"></ogmp-info-window>
+      <ogmp-info-window #infoWnd2 id="2"></ogmp-info-window>
 
       <ogmp-marker
+        #marker1
         class="car draggable"
         (dragend)="onMarkerDrop($event)"
-        message="Drag me!"
+        message="Beer!"
         (click)="onMarkerClick($event)"
         position="43.0763334001421, -89.38346928996582">
       </ogmp-marker>
 
       <ogmp-marker
-        class="cafe"
-        position="43.0718505758718, -89.38437051219482"
+        #marker2
+        class="custom_icon"
+        position="43.0763334001421, -89.38346928996582"
         message="This is a cafe spot"
-        (click)="onMarkerClick($event)"
+        (click)="onMarkerClick2($event)"
         >
       </ogmp-marker>
-
       <ogmp-marker
         class="cafe"
         position="43.07658417782822, -89.37231130046386"
@@ -46,7 +53,8 @@
         message="This is the best ber bar!"
         (click)="onMarkerClick($event)">
       </ogmp-marker>
-    </ogmp-map-view>
 
+
+    </ogmp-map-view>
   </div>
 </ion-content>

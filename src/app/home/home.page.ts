@@ -5,7 +5,10 @@ import {
   MapView,
   Marker,
   LatLngBounds,
-  InfoWindow
+  InfoWindow,
+  Projection,
+  IPoint,
+  LatLng
 } from '@open-google-maps-plugin/capacitor';
 
 @Component({
@@ -20,13 +23,37 @@ export class HomePage implements OnInit, AfterViewInit {
   @ViewChild('infoWnd1') infoWnd1Ref: ElementRef;
   infoWnd1: InfoWindow;
 
+  @ViewChild('infoWnd2') infoWnd2Ref: ElementRef;
+  infoWnd2: InfoWindow;
+
+
+  @ViewChild('marker1') marker1Ref: ElementRef;
+  marker1: Marker;
+
+  @ViewChild('marker2') marker2Ref: ElementRef;
+  marker2: Marker;
+
+  rotateAngle: number = 0;
+
   constructor() { }
 
   ngOnInit() {
   }
-  ngAfterViewInit() {
+  async ngAfterViewInit() {
     this.map = this.mapRef.nativeElement;
     this.infoWnd1 = this.infoWnd1Ref.nativeElement;
+    this.infoWnd2 = this.infoWnd2Ref.nativeElement;
+
+    this.marker1 = this.marker1Ref.nativeElement;
+    this.marker2 = this.marker2Ref.nativeElement;
+
+    setTimeout(() => {
+      this.infoWnd1.setContent("beer");
+      this.infoWnd1.open(this.marker1);
+
+      this.infoWnd2.setContent("marker2");
+      this.infoWnd2.open(this.marker2);
+    }, 2000);
   }
 
   /**
@@ -41,17 +68,51 @@ export class HomePage implements OnInit, AfterViewInit {
     const marker: Marker = event.target as Marker;
     const message: string = marker.getAttribute('message');
 
+    console.log(this.infoWnd1);
+
     this.infoWnd1.setContent(message);
     this.infoWnd1.open(marker);
 
-
-    console.log("--->onMarkerClick", marker.getAttribute('message'));
-
   }
+ onMarkerClick2(event) {
+   const marker: Marker = event.target as Marker;
+   const position: LatLng | null = marker.getPosition();
+   if (!position) {
+     return;
+   }
+
+
+   const projection: Projection = this.map.getProjection();
+   const zoom: number = this.map.getZoom();
+
+   const point: IPoint = projection.fromLatLngToPoint(position, zoom);
+   const message: string = `latLng : ${position.toString()}
+   point: ${point.x}, ${point.y}`;
+   console.log(message);
+
+   this.infoWnd2.setContent("marker2");
+   this.infoWnd2.open(marker);
+
+ }
   onMapClick(event) {
-    console.log("--->onMapClick", event);
+    const marker: Marker = new Marker({
+      'position': event.detail.latLng,
+      'icon': "assets/burger.png"
+    });
+
+
+        this.infoWnd1.setContent(message);
+        this.infoWnd1.open(marker);
+
+    this.map.append(marker);
+
+    console.log("--->onMapClick", event, marker);
   }
 
+  onRotateButtonClick(event) {
+    this.rotateAngle = (this.rotateAngle + 90) % 360;
+    this.map.heading = this.rotateAngle;
+  }
   onMarkerDrop(event) {
     console.log("--->onMarkerDrop", event);
   }
