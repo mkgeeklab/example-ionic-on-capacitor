@@ -30,9 +30,6 @@ export class HomePage implements OnInit, AfterViewInit {
   @ViewChild('marker1') marker1Ref: ElementRef;
   marker1: Marker;
 
-  @ViewChild('marker2') marker2Ref: ElementRef;
-  marker2: Marker;
-
   rotateAngle: number = 0;
 
   constructor() { }
@@ -45,14 +42,13 @@ export class HomePage implements OnInit, AfterViewInit {
     this.infoWnd2 = this.infoWnd2Ref.nativeElement;
 
     this.marker1 = this.marker1Ref.nativeElement;
-    this.marker2 = this.marker2Ref.nativeElement;
 
     setTimeout(() => {
       this.infoWnd1.setContent("beer");
       this.infoWnd1.open(this.marker1);
 
-      this.infoWnd2.setContent("marker2");
-      this.infoWnd2.open(this.marker2);
+      // this.infoWnd2.setContent("marker2");
+      // this.infoWnd2.open(this.marker2);
     }, 2000);
   }
 
@@ -101,8 +97,8 @@ export class HomePage implements OnInit, AfterViewInit {
     });
 
 
-        this.infoWnd1.setContent(message);
-        this.infoWnd1.open(marker);
+    this.infoWnd1.setContent("message");
+    this.infoWnd1.open(marker);
 
     this.map.append(marker);
 
