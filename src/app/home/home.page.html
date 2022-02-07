@@ -9,45 +9,41 @@
       jsMapId="283fb0722209eb1e"
       #mapCanvas
       center="43.0763334001421, -89.38346928996582" zoom="20"
+      tilt="0"
       mapType="roadmap"
       (click)="onMapClick($event)">
 
-      <ogmp-info-window #infoWnd1 id="1"></ogmp-info-window>
-      <ogmp-info-window #infoWnd2 id="2"></ogmp-info-window>
-
       <ogmp-marker
-        #marker1
+        message="car"
+        (click)="onMarkerClick($event)"
         class="car draggable"
         (dragend)="onMarkerDrop($event)"
-        message="Beer!"
-        (click)="onMarkerClick($event)"
-        position="43.0763334001421, -89.38346928996582">
-      </ogmp-marker>
-<!--
+        position="43.0763334001421, -89.38346928996582"></ogmp-marker>
+
       <ogmp-marker
-        #marker2
+        message="cafe"
+        (click)="onMarkerClick($event)"
         class="cafe"
-        position="43.07658417782822, -89.37231130046386"
-        message="This is another cafe spot"
+        position="43.0718505758718, -89.38437051219482"></ogmp-marker>
+
+      <ogmp-marker
+        message="cafe"
         (click)="onMarkerClick($event)"
-        >
-      </ogmp-marker>
+        class="cafe"
+        position="43.07658417782822, -89.37231130046386"></ogmp-marker>
+
+      <ogmp-marker
+        message="bar"
+        (click)="onMarkerClick($event)"
+        class="bar"
+        position="43.08191296103446, -89.3734700147583"></ogmp-marker>
 
       <ogmp-marker
         class="bar"
-        position="43.08191296103446, -89.3734700147583"
-        message="Let's drink togher!"
-        (click)="onMarkerClick($event)">
-      </ogmp-marker>
-
-      <ogmp-marker
-        class="bar"
-        position="43.075737799024346, -89.39428395671386"
-        message="This is the best ber bar!"
-        (click)="onMarkerClick($event)">
-      </ogmp-marker>
--->
-
+        message="bar"
+        (click)="onMarkerClick($event)"
+        position="43.075737799024346, -89.39428395671386"></ogmp-marker>
     </ogmp-map-view>
+
   </div>
 </ion-content>

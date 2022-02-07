@@ -20,17 +20,9 @@ export class HomePage implements OnInit, AfterViewInit {
   @ViewChild('mapCanvas') mapRef: ElementRef;
   map: MapView;
 
-  @ViewChild('infoWnd1') infoWnd1Ref: ElementRef;
-  infoWnd1: InfoWindow;
-
-  @ViewChild('infoWnd2') infoWnd2Ref: ElementRef;
-  infoWnd2: InfoWindow;
-
-
-  @ViewChild('marker1') marker1Ref: ElementRef;
-  marker1: Marker;
-
   rotateAngle: number = 0;
+
+  infoWnd1: InfoWindow = new InfoWindow();
 
   constructor() { }
 
@@ -38,18 +30,10 @@ export class HomePage implements OnInit, AfterViewInit {
   }
   async ngAfterViewInit() {
     this.map = this.mapRef.nativeElement;
-    this.infoWnd1 = this.infoWnd1Ref.nativeElement;
-    this.infoWnd2 = this.infoWnd2Ref.nativeElement;
+    this.map.addEventListener('ready', () => this.onMapReady());
+  }
 
-    this.marker1 = this.marker1Ref.nativeElement;
-
-    setTimeout(() => {
-      this.infoWnd1.setContent("beer");
-      this.infoWnd1.open(this.marker1);
-
-      // this.infoWnd2.setContent("marker2");
-      // this.infoWnd2.open(this.marker2);
-    }, 2000);
+  onMapReady() {
   }
 
   /**
@@ -63,8 +47,6 @@ export class HomePage implements OnInit, AfterViewInit {
   onMarkerClick(event) {
     const marker: Marker = event.target as Marker;
     const message: string = marker.getAttribute('message');
-
-    console.log(this.infoWnd1);
 
     this.infoWnd1.setContent(message);
     this.infoWnd1.open(marker);
@@ -96,13 +78,16 @@ export class HomePage implements OnInit, AfterViewInit {
       'icon': "assets/burger.png"
     });
 
-
-    this.infoWnd1.setContent("message");
-    this.infoWnd1.open(marker);
+    const infoWnd: InfoWindow = new InfoWindow();
+    const message: string = `lat: ${event.detail.latLng.lat}\nlng: ${event.detail.latLng.lng}`;
+    marker.addEventListener('click', () => {
+      infoWnd.setContent(message);
+      infoWnd.open(marker);
+    });
 
     this.map.append(marker);
+    marker.dispatchEvent(new Event('click'));
 
-    console.log("--->onMapClick", event, marker);
   }
 
   onRotateButtonClick(event) {
