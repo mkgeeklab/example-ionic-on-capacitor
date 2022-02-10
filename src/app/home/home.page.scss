@@ -33,19 +33,18 @@
 }
 
 #mapCanvas {
+/*
   width: 100%;
   height: 90%;
   flex: 0 0 100%;
-  /*
+  */
   position: absolute;
   left: 0px;
-  top: 0px;
   right: 0px;
-  bottom: 0px;
-  */
+  height: calc(100% - 56px);
 }
 
-#rotateBtn {
+#toolbar {
   position: absolute;
   z-index: 2;
 }
@@ -83,4 +82,9 @@
   --anchor-point-y: 0.96;
   --info-anchor-point-x: 0.83;
   --info-anchor-point-y: 0.08;
+}
+
+.activeInfo {
+  background-color: gold;
+  color: white;
 }

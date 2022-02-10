@@ -22,6 +22,8 @@ export class HomePage implements OnInit, AfterViewInit {
 
   rotateAngle: number = 0;
 
+  // @ViewChild('infoWnd1') infoRef: ElementRef;
+  // infoWnd1: InfoWindow;
   infoWnd1: InfoWindow = new InfoWindow();
 
   constructor() { }
@@ -29,11 +31,15 @@ export class HomePage implements OnInit, AfterViewInit {
   ngOnInit() {
   }
   async ngAfterViewInit() {
+    // this.infoWnd1 = this.infoRef.nativeElement;
     this.map = this.mapRef.nativeElement;
     this.map.addEventListener('ready', () => this.onMapReady());
   }
 
   onMapReady() {
+    this.infoWnd1.addEventListener('click', (event) => {
+      this.infoWnd1.classList.toggle('activeInfo');
+    });
   }
 
   /**
@@ -52,27 +58,9 @@ export class HomePage implements OnInit, AfterViewInit {
     this.infoWnd1.open(marker);
 
   }
- onMarkerClick2(event) {
-   const marker: Marker = event.target as Marker;
-   const position: LatLng | null = marker.getPosition();
-   if (!position) {
-     return;
-   }
 
-
-   const projection: Projection = this.map.getProjection();
-   const zoom: number = this.map.getZoom();
-
-   const point: IPoint = projection.fromLatLngToPoint(position, zoom);
-   const message: string = `latLng : ${position.toString()}
-   point: ${point.x}, ${point.y}`;
-   console.log(message);
-
-   this.infoWnd2.setContent("marker2");
-   this.infoWnd2.open(marker);
-
- }
   onMapClick(event) {
+
     const marker: Marker = new Marker({
       'position': event.detail.latLng,
       'icon': "assets/burger.png"
@@ -84,12 +72,25 @@ export class HomePage implements OnInit, AfterViewInit {
       infoWnd.setContent(message);
       infoWnd.open(marker);
     });
+    infoWnd.addEventListener('click', () => {
+      infoWnd.close();
+    });
 
     this.map.append(marker);
     marker.dispatchEvent(new Event('click'));
 
   }
+  onCameraButtonClick(event) {
+    this.map.moveCamera({
+      center: {lat: 37.422359, lng: -122.084344},
+      zoom: 15,
+      tilt: 60,
+      heading: 140,
 
+      // The duration property does not support on JS platform
+      duration: 5000
+    });
+  }
   onRotateButtonClick(event) {
     this.rotateAngle = (this.rotateAngle + 90) % 360;
     this.map.heading = this.rotateAngle;
