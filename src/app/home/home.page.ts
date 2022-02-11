@@ -77,7 +77,7 @@ export class HomePage implements OnInit, AfterViewInit {
     });
 
     this.map.append(marker);
-    marker.dispatchEvent(new Event('click'));
+    infoWnd.open(marker);
 
   }
   onCameraButtonClick(event) {
