@@ -5,4 +5,5 @@ export interface StarbucksPlace {
   name: string;
   address: string;
   class: string;
+  id: string;
 }

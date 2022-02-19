@@ -18,14 +18,16 @@
     </ion-card>
   <ogmp-map-view
     id="mapCanvas"
-    #mapCanvas
-    >
+    #mapCanvas>
 
-    <ng-template ngFor let-item [ngForOf]="stores" let-i="index">
+    <ogmp-info-window #infoWnd></ogmp-info-window>
+
+    <ng-template ngFor let-item [ngForOf]="stores | keyvalue">
       <ogmp-marker
         (click)="onMarkerSelect($event)"
-        position="{{item.position.lat}},{{item.position.lng}}"
-        class="{{item.cssClass}}"
+        position="{{item.value.position.lat}},{{item.value.position.lng}}"
+        class="{{item.value.cssClass}}"
+        id="{{item.key}}"
         ></ogmp-marker>
     </ng-template>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Plugins } from '@capacitor/core';
 import {
   OpenGoogleMaps,
@@ -16,29 +16,34 @@ import {
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })
-export class HomePage implements OnInit, AfterViewInit {
+export class HomePage implements AfterViewInit {
   @ViewChild('mapCanvas') mapRef: ElementRef;
   map: MapView;
 
   rotateAngle: number = 0;
 
-  // @ViewChild('infoWnd1') infoRef: ElementRef;
-  // infoWnd1: InfoWindow;
-  infoWnd1: InfoWindow = new InfoWindow();
+  @ViewChild('infoWnd1') info1Ref: ElementRef;
+  infoWnd1: InfoWindow;
+
+  hasClass: boolean = false;
 
   constructor() { }
 
-  ngOnInit() {
-  }
   async ngAfterViewInit() {
-    // this.infoWnd1 = this.infoRef.nativeElement;
+    // this.infoWnd1 = new InfoWindow();
+    this.infoWnd1 = this.info1Ref.nativeElement;
     this.map = this.mapRef.nativeElement;
     this.map.addEventListener('ready', () => this.onMapReady());
   }
 
   onMapReady() {
-    this.infoWnd1.addEventListener('click', (event) => {
-      this.infoWnd1.classList.toggle('activeInfo');
+    this.infoWnd1.addEventListener('click',  (event) => {
+      if (this.hasClass) {
+        this.infoWnd1.classList.remove("active_info", "animate__animated", "animate__flip");
+      } else {
+        this.infoWnd1.classList.add("active_info", "animate__animated", "animate__flip");
+      }
+      this.hasClass = !this.hasClass;
     });
   }
 
@@ -63,29 +68,34 @@ export class HomePage implements OnInit, AfterViewInit {
 
     const marker: Marker = new Marker({
       'position': event.detail.latLng,
-      'icon': "assets/burger.png"
+      'icon': "url('assets/burger.png')"
     });
 
     const infoWnd: InfoWindow = new InfoWindow();
     const message: string = `lat: ${event.detail.latLng.lat}\nlng: ${event.detail.latLng.lng}`;
+    infoWnd.setContent(message);
     marker.addEventListener('click', () => {
-      infoWnd.setContent(message);
+      infoWnd.classList.add('animate__tada',  "animate__animated");
       infoWnd.open(marker);
     });
     infoWnd.addEventListener('click', () => {
+      infoWnd.classList.remove('animate__tada',  "animate__animated");
       infoWnd.close();
     });
 
     this.map.append(marker);
-    infoWnd.open(marker);
+    marker.dispatchEvent(new Event('click'));
 
   }
   onCameraButtonClick(event) {
+    const vregion = this.map.getVisibleRegion();
+
+
     this.map.moveCamera({
-      center: {lat: 37.422359, lng: -122.084344},
+      center: {lat: 43.08191296103446, lng: -89.3734700147583},
       zoom: 15,
       tilt: 60,
-      heading: 140,
+      heading: 0,
 
       // The duration property does not support on JS platform
       duration: 5000

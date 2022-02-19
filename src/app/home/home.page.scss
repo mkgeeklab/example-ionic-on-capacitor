@@ -1,3 +1,6 @@
+ion-content {
+  --overflow: hidden;
+}
 #container {
   text-align: center;
   display: flex;
@@ -33,11 +36,6 @@
 }
 
 #mapCanvas {
-/*
-  width: 100%;
-  height: 90%;
-  flex: 0 0 100%;
-  */
   position: absolute;
   left: 0px;
   right: 0px;
@@ -47,6 +45,10 @@
 #toolbar {
   position: absolute;
   z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  user-select: none;
 }
 
 .something {
@@ -62,14 +64,17 @@
 .draggable {
   --draggable: true;
 }
+.hide {
+  --visible: false;
+}
 .car {
   --icon: url("/assets/beer.png");
 }
 
 .cafe {
   --icon: url("/assets/coffee-cup.svg");
-  --anchorPointX: 0.5;
-  --anchorPointY: 0.2;
+  --anchor-point-x: 0.5;
+  --anchor-point-y: 0.2;
 }
 
 .bar {
@@ -83,8 +88,12 @@
   --info-anchor-point-x: 0.83;
   --info-anchor-point-y: 0.08;
 }
-
-.activeInfo {
+.active_info {
   background-color: gold;
   color: white;
+  border-color: red;
+  border-radius: 10px;
+}
+.greenIcon {
+  --icon: green;
 }

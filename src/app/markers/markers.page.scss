@@ -4,7 +4,9 @@
 .active {
   --icon: url("/assets/red-coffee-icon.svg") !important;
 }
-
+ion-content {
+  --overflow: hidden;
+}
 #infoCard {
   position: absolute;
   bottom: -50%;
@@ -12,4 +14,13 @@
   right: 5%;
   min-height: 100px;
   z-index: 10;
+}
+
+#container {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  margin-top: 56px;
+  height: 100%;
+  position: relative;
 }

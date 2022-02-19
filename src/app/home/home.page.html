@@ -12,43 +12,40 @@
       jsMapId="283fb0722209eb1e"
       #mapCanvas
       center="43.0763334001421, -89.38346928996582" zoom="17"
-      tilt="67.5"
-      heading="45"
+      tilt="0"
+      heading="0"
       mapType="roadmap"
       (click)="onMapClick($event)">
-      <!-- <ogmp-info-window #infoWnd1></ogmp-info-window> -->
+      <ogmp-info-window #infoWnd1></ogmp-info-window>
 
       <ogmp-marker
-        message="car"
+        message="Hello!"
+        class="greenIcon draggable"
         (click)="onMarkerClick($event)"
-        class="car draggable"
         (dragend)="onMarkerDrop($event)"
         position="43.0763334001421, -89.38346928996582"></ogmp-marker>
 
+      <!--
       <ogmp-marker
         message="cafe"
         (click)="onMarkerClick($event)"
-        class="cafe"
         position="43.0718505758718, -89.38437051219482"></ogmp-marker>
 
       <ogmp-marker
         message="cafe"
         (click)="onMarkerClick($event)"
-        class="cafe"
         position="43.07658417782822, -89.37231130046386"></ogmp-marker>
 
       <ogmp-marker
         message="bar"
         (click)="onMarkerClick($event)"
-        class="bar"
         position="43.08191296103446, -89.3734700147583"></ogmp-marker>
 
       <ogmp-marker
-        class="bar"
         message="bar"
         (click)="onMarkerClick($event)"
         position="43.075737799024346, -89.39428395671386"></ogmp-marker>
+    -->
     </ogmp-map-view>
-
   </div>
 </ion-content>
