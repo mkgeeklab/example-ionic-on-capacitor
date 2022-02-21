@@ -1,19 +1,23 @@
 <ion-content [fullscreen]="true">
   <div id="container">
     <div id="toolbar">
-      <ion-button
-        (click)="onRotateButtonClick($even)">Rotate</ion-button>
-      <ion-button
-        (click)="onCameraButtonClick($even)">set Camera</ion-button>
+      <div>
+        <ion-button
+          (click)="onRotateButtonClick($even)">Rotate</ion-button>
+        <ion-button
+          (click)="onCameraButtonClick($even)">set Camera</ion-button>
+      </div>
     </div>
 
     <ogmp-map-view
       id="mapCanvas"
       jsMapId="283fb0722209eb1e"
       #mapCanvas
-      center="43.0763334001421, -89.38346928996582" zoom="17"
-      tilt="0"
-      heading="0"
+
+      [center]="center"
+      [zoom]="zoom"
+      [tilt]="tilt"
+      [heading]="heading"
       mapType="roadmap"
       (click)="onMapClick($event)">
       <ogmp-info-window #infoWnd1></ogmp-info-window>

@@ -8,7 +8,8 @@ import {
   InfoWindow,
   Projection,
   IPoint,
-  LatLng
+  LatLng,
+  ILatLng
 } from '@open-google-maps-plugin/capacitor';
 
 @Component({
@@ -19,6 +20,10 @@ import {
 export class HomePage implements AfterViewInit {
   @ViewChild('mapCanvas') mapRef: ElementRef;
   map: MapView;
+  center: ILatLng | LatLng = new LatLng(43.0763334001421, -89.38346928996582);
+  zoom: number = 17;
+  tilt: number = 0;
+  heading: number = 0;
 
   rotateAngle: number = 0;
 
@@ -68,19 +73,25 @@ export class HomePage implements AfterViewInit {
 
     const marker: Marker = new Marker({
       'position': event.detail.latLng,
-      'icon': "url('assets/burger.png')"
+      'icon': "url('assets/burger.png')",
+      'draggable': true,
     });
 
     const infoWnd: InfoWindow = new InfoWindow();
     const message: string = `lat: ${event.detail.latLng.lat}\nlng: ${event.detail.latLng.lng}`;
     infoWnd.setContent(message);
-    marker.addEventListener('click', () => {
+    marker.addEventListener('click', (event: CustomEvent) => {
       infoWnd.classList.add('animate__tada',  "animate__animated");
       infoWnd.open(marker);
     });
-    infoWnd.addEventListener('click', () => {
+    infoWnd.addEventListener('click', (event: CustomEvent) => {
       infoWnd.classList.remove('animate__tada',  "animate__animated");
       infoWnd.close();
+    });
+
+    marker.addEventListener('position_changed', (event: CustomEvent) => {
+      const pos: ILatLng = event.detail.latLng;
+      infoWnd.setContent(`lat: ${event.detail.latLng.lat}\nlng: ${event.detail.latLng.lng}`);
     });
 
     this.map.append(marker);
@@ -88,16 +99,12 @@ export class HomePage implements AfterViewInit {
 
   }
   onCameraButtonClick(event) {
-    const vregion = this.map.getVisibleRegion();
-
 
     this.map.moveCamera({
       center: {lat: 43.08191296103446, lng: -89.3734700147583},
       zoom: 15,
       tilt: 60,
       heading: 0,
-
-      // The duration property does not support on JS platform
       duration: 5000
     });
   }
@@ -126,7 +133,8 @@ export class HomePage implements AfterViewInit {
       lat: 40.5430142538686,
       lng: -103.47371220588684
     });
-    this.map.fitBounds(bounds);
+    console.log(bounds.toUrlValue());
+    // this.map.fitBounds(bounds);
   }
 
 }
