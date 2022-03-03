@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import {
   MapView,
   Marker,
@@ -13,7 +13,7 @@ import {
   templateUrl: './coordinate.page.html',
   styleUrls: ['./coordinate.page.scss'],
 })
-export class CoordinatePage implements AfterViewInit {
+export class CoordinatePage implements AfterViewInit, OnDestroy {
 
   @ViewChild('mapCanvas') mapRef: ElementRef;
   map: MapView;
@@ -21,7 +21,9 @@ export class CoordinatePage implements AfterViewInit {
   originMarker: Marker;
   @ViewChild('destination') destRef: ElementRef;
   destMarker: Marker;
+  @ViewChild('svgTag') svgTagRef: ElementRef;
 
+  _onRedraw: () => void = () => this.redraw();
 
   svgLeft: string = `0px`;
   svgTop: string = `0px`;
@@ -43,6 +45,13 @@ export class CoordinatePage implements AfterViewInit {
     });
 
   }
+
+  ngOnDestroy() {
+
+    this.map.removeEventListener('bounds_changed', this._onRedraw);
+    this.originMarker.removeEventListener('position_changed', this._onRedraw);
+    this.destMarker.removeEventListener('position_changed', this._onRedraw);
+  }
   onMapReady() {
 
     // Fits the camera to the given bounds
@@ -53,21 +62,21 @@ export class CoordinatePage implements AfterViewInit {
 
     this.originMarker.setPosition({"lat": 40.712216, "lng": -74.22655});
     this.destMarker.setPosition({"lat": 40.773941, "lng": -74.12544});
-    
-    this.map.addEventListener('bounds_changed', () => this.redraw());
-    this.map.addEventListener('tilt_changed', () => this.redraw());
-    this.map.addEventListener('heading_changed', () => this.redraw());
-    this.originMarker.addEventListener('position_changed', () => this.redraw());
-    this.destMarker.addEventListener('position_changed', () => this.redraw());
+
+    this.svgTagRef.nativeElement.unpauseAnimations();
+
+    this.map.addEventListener('bounds_changed', this._onRedraw);
+    this.originMarker.addEventListener('position_changed', this._onRedraw);
+    this.destMarker.addEventListener('position_changed', this._onRedraw);
   }
 
   redraw() {
+    this.svgTagRef.nativeElement.pauseAnimations();
     const origin: LatLng = this.originMarker.getPosition();
     const dest: LatLng = this.destMarker.getPosition();
 
     const originPx: IPoint = this.map.fromLatLngToContainerPixel(origin);
     const destPx: IPoint = this.map.fromLatLngToContainerPixel(dest);
-    console.log(originPx, destPx);
 
     const left: number = Math.min(originPx.x, destPx.x);
     const top: number = Math.min(originPx.y, destPx.y);
@@ -92,7 +101,7 @@ export class CoordinatePage implements AfterViewInit {
       animateToY = 0;
     }
     this.animateValues = `${ animateFromX },${ animateFromY }; ${ animateToX },${ animateToY }`;
-    console.log(this.animateValues);
+    this.svgTagRef.nativeElement.unpauseAnimations();
   }
 
 }
