@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { StarbucksPlace } from "./starbucksplace";
-import { MapView, ILatLng, Marker, InfoWindow } from '@open-google-maps-plugin/capacitor';
+import { MapView, ILatLng, Marker, InfoWindow } from '@open-google-maps-plugin/core';
 
 @Component({
   selector: 'app-markers',
@@ -44,7 +44,7 @@ export class MarkersPage implements OnInit, AfterViewInit {
       });
 
       // pass to the fitBounds()
-      // this.map.fitBounds(locations);
+      this.map.fitBounds(locations);
     });
   }
   onMarkerSelect(event: CustomEvent) {

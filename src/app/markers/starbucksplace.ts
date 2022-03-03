@@ -1,4 +1,4 @@
-import { ILatLng } from "@open-google-maps-plugin/capacitor";
+import { ILatLng } from "@open-google-maps-plugin/core";
 
 export interface StarbucksPlace {
   position: ILatLng;

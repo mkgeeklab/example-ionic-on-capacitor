@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { OpenGoogleMapsInitializer } from '@open-google-maps-plugin/capacitor';
+import { OpenGoogleMapsInitializer } from '@open-google-maps-plugin/core';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +16,10 @@ export class AppComponent implements OnInit {
       icon: 'home'
     },
 
+    {
+      title: 'coordonate',
+      url: '/map-coordinate'
+    },
     {
       title: 'No map page',
       url: '/no-map'

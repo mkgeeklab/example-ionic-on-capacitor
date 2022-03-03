@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'map-coordinate',
     pathMatch: 'full'
   },
   {
@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'markers',
     loadChildren: () => import('./markers/markers.module').then( m => m.MarkersPageModule)
+  },
+  {
+    path: 'map-coordinate',
+    loadChildren: () => import('./coordinate/coordinate.module').then( m => m.CoordinatePageModule)
   },
 ];
 

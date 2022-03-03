@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>coordinate</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="container">
+  <div id="mapViewWrapper">
+    <ogmp-map-view
+      id="mapCanvas"
+      jsMapId="283fb0722209eb1e"
+      #mapCanvas>
+
+        <ogmp-marker #origin class="origin draggable"></ogmp-marker>
+        <ogmp-marker #destination class="destination draggable"></ogmp-marker>
+
+
+
+    </ogmp-map-view>
+
+    <div id="svgWrapper"
+      [style.left]="svgLeft"
+      [style.top]="svgTop"
+      [style.width]="svgWidth"
+      [style.height]="svgHeight">
+
+
+      <svg xmlns="http://www.w3.org/2000/svg"
+        width="100%" height="100%">
+
+        <circle cx="0" cy="0" r="5" fill="blue">
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            [attr.values]="animateValues"
+            keyTimes="0; 1"
+            dur="3s"
+            repeatCount="indefinite"
+            begin="0s" />
+        </circle>
+
+        <circle cx="0" cy="0" r="5" fill="yellow">
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            [attr.values]="animateValues"
+            keyTimes="0; 1"
+            dur="4s"
+            repeatCount="indefinite"
+            begin="2s" />
+        </circle>
+
+        <circle cx="0" cy="0" r="5" fill="red">
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            [attr.values]="animateValues"
+            keyTimes="0; 1"
+            dur="5s"
+            repeatCount="indefinite"
+            begin="4s" />
+        </circle>
+
+        <circle cx="0" cy="0" r="5" fill="green">
+          <animateTransform
+            attributeName="transform"
+            type="translate"
+            [attr.values]="animateValues"
+            keyTimes="0; 1"
+            dur="6s"
+            repeatCount="indefinite"
+            begin="3s" />
+        </circle>
+      </svg>
+    </div>
+  </div>
+
+</ion-content>

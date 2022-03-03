@@ -1,7 +1,6 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Plugins } from '@capacitor/core';
 import {
-  OpenGoogleMaps,
   MapView,
   Marker,
   LatLngBounds,
@@ -10,7 +9,7 @@ import {
   IPoint,
   LatLng,
   ILatLng
-} from '@open-google-maps-plugin/capacitor';
+} from '@open-google-maps-plugin/core';
 
 @Component({
   selector: 'app-home',
@@ -20,15 +19,19 @@ import {
 export class HomePage implements AfterViewInit {
   @ViewChild('mapCanvas') mapRef: ElementRef;
   map: MapView;
-  center: ILatLng | LatLng = new LatLng(43.0763334001421, -89.38346928996582);
-  zoom: number = 17;
+  center: ILatLng | LatLng = new LatLng(0, 0);
+  zoom: number = 0;
   tilt: number = 0;
   heading: number = 0;
 
   rotateAngle: number = 0;
 
+  private markers: Marker[] = [];
+
   @ViewChild('infoWnd1') info1Ref: ElementRef;
   infoWnd1: InfoWindow;
+
+  @ViewChild('mouseTouchLayer') mouseTouchLayer: ElementRef;
 
   hasClass: boolean = false;
 
@@ -41,6 +44,26 @@ export class HomePage implements AfterViewInit {
     this.map.addEventListener('ready', () => this.onMapReady());
   }
 
+  onMouseTouchLayer(event: MouseEvent) {
+    const latLng: LatLng = this.map.fromContainerPixelToLatLng({
+      x: event.offsetX,
+      y: event.offsetY
+    }, true);
+    console.log(`(${event.offsetX}, ${event.offsetY}) -> ${latLng.toUrlValue()}`)
+
+    const marker: Marker = new Marker({
+      'position': latLng,
+      'draggable': true,
+      'icon': 'orange',
+    });
+
+
+    this.map.append(marker);
+
+    this.markers.push(marker);
+
+
+  }
   onMapReady() {
     this.infoWnd1.addEventListener('click',  (event) => {
       if (this.hasClass) {
@@ -68,17 +91,26 @@ export class HomePage implements AfterViewInit {
     this.infoWnd1.open(marker);
 
   }
+  onClearMarkers(event) {
+    this.markers.forEach((marker) => {
+      marker.remove();
+    })
+    this.markers.length = 0;
+  }
+  onLayerToggleButtonClick(event) {
+    this.mouseTouchLayer.nativeElement.classList.toggle('hidden');
+  }
 
   onMapClick(event) {
 
     const marker: Marker = new Marker({
       'position': event.detail.latLng,
-      'icon': "url('assets/burger.png')",
       'draggable': true,
     });
 
     const infoWnd: InfoWindow = new InfoWindow();
-    const message: string = `lat: ${event.detail.latLng.lat}\nlng: ${event.detail.latLng.lng}`;
+    const pos = this.map.getProjection().fromLatLngToPoint(event.detail.latLng);
+    const message: string = `x: ${pos.x}\ny: ${pos.y}`;
     infoWnd.setContent(message);
     marker.addEventListener('click', (event: CustomEvent) => {
       infoWnd.classList.add('animate__tada',  "animate__animated");
@@ -89,13 +121,11 @@ export class HomePage implements AfterViewInit {
       infoWnd.close();
     });
 
-    marker.addEventListener('position_changed', (event: CustomEvent) => {
-      const pos: ILatLng = event.detail.latLng;
-      infoWnd.setContent(`lat: ${event.detail.latLng.lat}\nlng: ${event.detail.latLng.lng}`);
-    });
 
     this.map.append(marker);
     marker.dispatchEvent(new Event('click'));
+
+    this.markers.push(marker);
 
   }
   onCameraButtonClick(event) {
@@ -108,8 +138,21 @@ export class HomePage implements AfterViewInit {
       duration: 5000
     });
   }
-  onRotateButtonClick(event) {
-    this.rotateAngle = (this.rotateAngle + 90) % 360;
+  onTiltButtonClick(event, angle) {
+    this.map.tilt += angle;
+
+  }
+  onRotateButtonClick(event, angle) {
+
+    this.rotateAngle = (this.rotateAngle + angle) % 360;
+    if (this.rotateAngle < 0) {
+      this.rotateAngle += 360;
+    }
+    // console.log('set', this.rotateAngle);
+    // this.map.moveCamera({
+    //   heading: this.rotateAngle,
+    //   duration: 1000
+    // });
     this.map.heading = this.rotateAngle;
   }
   onMarkerDrop(event) {

@@ -44,15 +44,15 @@ ion-content {
 
 #toolbar {
   position: absolute;
-  z-index: 2;
+  z-index: 100;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   width: 100%;
   user-select: none;
 }
 
 .something {
-  background-color: green;
+  background-color: red;
   width:80%;
   height: 300px;
 }
@@ -66,6 +66,9 @@ ion-content {
 }
 .hide {
   --visible: false;
+}
+.hidden {
+  display: none;
 }
 .car {
   --icon: url("/assets/beer.png");
@@ -95,5 +98,20 @@ ion-content {
   border-radius: 10px;
 }
 .greenIcon {
-  --icon: green;
+  --icon: url("/assets/beer.png");
+}
+
+#mouseTouchLayer {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   left: 0px;
+   top: 0px;
+   right: 0px;
+   bottom: 0px;
+   z-index: 1;
+   overflow: visible;
+   color: black;
+   background: rgba(0, 0, 0, 0.2);
+   user-select: "pointer";
 }
