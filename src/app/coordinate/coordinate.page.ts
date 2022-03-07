@@ -21,7 +21,10 @@ export class CoordinatePage implements AfterViewInit, OnDestroy {
   originMarker: Marker;
   @ViewChild('destination') destRef: ElementRef;
   destMarker: Marker;
+  @ViewChild('svgWrapper') svgWrapperRef: ElementRef;
+  svgWrapper: HTMLDivElement;
   @ViewChild('svgTag') svgTagRef: ElementRef;
+  svgTag: SVGElement;
 
   _onRedraw: () => void = () => this.redraw();
 
@@ -35,6 +38,8 @@ export class CoordinatePage implements AfterViewInit, OnDestroy {
   constructor() { }
 
   ngAfterViewInit() {
+    this.svgWrapper = this.svgWrapperRef.nativeElement;
+    this.svgTag = this.svgTagRef.nativeElement;
     this.map = this.mapRef.nativeElement;
     this.originMarker = this.originRef.nativeElement;
     this.destMarker = this.destRef.nativeElement;
@@ -63,7 +68,7 @@ export class CoordinatePage implements AfterViewInit, OnDestroy {
     this.originMarker.setPosition({"lat": 40.712216, "lng": -74.22655});
     this.destMarker.setPosition({"lat": 40.773941, "lng": -74.12544});
 
-    this.svgTagRef.nativeElement.unpauseAnimations();
+    // this.svgTag.unpauseAnimations();
 
     this.map.addEventListener('bounds_changed', this._onRedraw);
     this.originMarker.addEventListener('position_changed', this._onRedraw);
@@ -71,7 +76,7 @@ export class CoordinatePage implements AfterViewInit, OnDestroy {
   }
 
   redraw() {
-    this.svgTagRef.nativeElement.pauseAnimations();
+    // this.svgTag.pauseAnimations();
     const origin: LatLng = this.originMarker.getPosition();
     const dest: LatLng = this.destMarker.getPosition();
 
@@ -82,11 +87,12 @@ export class CoordinatePage implements AfterViewInit, OnDestroy {
     const top: number = Math.min(originPx.y, destPx.y);
     const width: number = Math.max(originPx.x, destPx.x) - left;
     const height: number = Math.max(originPx.y, destPx.y) - top;
+    console.log(`(${originPx.x}, ${destPx.x}) - (${width})`);
 
-    this.svgLeft = `${ left }px`;
-    this.svgTop = `${ top }px`;
-    this.svgWidth = `${ width }px`;
-    this.svgHeight = `${ height }px`;
+    this.svgWrapper.style.left = `${ left }px`;
+    this.svgWrapper.style.top = `${ top }px`;
+    this.svgWrapper.style.width = `${ width }px`;
+    this.svgWrapper.style.height = `${ height }px`;
 
     let animateFromX: number = 0;
     let animateToX: number = width;
@@ -101,7 +107,7 @@ export class CoordinatePage implements AfterViewInit, OnDestroy {
       animateToY = 0;
     }
     this.animateValues = `${ animateFromX },${ animateFromY }; ${ animateToX },${ animateToY }`;
-    this.svgTagRef.nativeElement.unpauseAnimations();
+    // this.svgTag.unpauseAnimations();
   }
 
 }
