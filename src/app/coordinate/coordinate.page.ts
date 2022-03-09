@@ -6,6 +6,7 @@ import {
   ILatLng,
   IPoint,
   Projection,
+  InfoWindow
 } from '@open-google-maps-plugin/core';
 
 @Component({
@@ -21,29 +22,27 @@ export class CoordinatePage implements AfterViewInit, OnDestroy {
   originMarker: Marker;
   @ViewChild('destination') destRef: ElementRef;
   destMarker: Marker;
-  @ViewChild('svgWrapper') svgWrapperRef: ElementRef;
-  svgWrapper: HTMLDivElement;
-  @ViewChild('svgTag') svgTagRef: ElementRef;
-  svgTag: SVGElement;
+  @ViewChild('playGround') playGroundRef: ElementRef;
+  playGround: HTMLDivElement;
+
+
+  @ViewChild('infoDest') infoDestRef: ElementRef;
+  infoDest: InfoWindow;
+  @ViewChild('infoOrigin') infoOriginRef: ElementRef;
+  infoOrigin: InfoWindow;
 
   _onRedraw: () => void = () => this.redraw();
 
-  svgLeft: string = `0px`;
-  svgTop: string = `0px`;
-  svgWidth: string = `0px`;
-  svgHeight: string = `0px`;
-  animateValues: string = "0,0; 100,100";
-  animateToY: number = 0;
 
   constructor() { }
 
   ngAfterViewInit() {
-    this.svgWrapper = this.svgWrapperRef.nativeElement;
-    this.svgTag = this.svgTagRef.nativeElement;
+    this.infoOrigin = this.infoOriginRef.nativeElement;
+    this.infoDest = this.infoDestRef.nativeElement;
+    this.playGround = this.playGroundRef.nativeElement;
     this.map = this.mapRef.nativeElement;
     this.originMarker = this.originRef.nativeElement;
     this.destMarker = this.destRef.nativeElement;
-
 
     this.map.addEventListener('ready', () => this.onMapReady(), {
       once: true
@@ -59,6 +58,24 @@ export class CoordinatePage implements AfterViewInit, OnDestroy {
   }
   onMapReady() {
 
+
+    this.infoOrigin.open(this.originMarker);
+    this.infoDest.open(this.destMarker);
+    this.infoOrigin.addEventListener('click', (event: Event) => {
+      this.infoOrigin.classList.add("animate__animated");
+      this.infoOrigin.classList.toggle("animate__flip");
+      setTimeout(() => {
+        this.infoOrigin.classList.remove("animate__animated", "animate__flip");
+      }, 1000);
+    })
+
+    this.infoDest.addEventListener('click', (event: Event) => {
+      this.infoDest.classList.add("animate__animated", "animate__flip");
+      setTimeout(() => {
+        this.infoDest.classList.remove("animate__animated", "animate__flip");
+      }, 1000);
+    })
+
     // Fits the camera to the given bounds
     this.map.fitBounds([
       {"lat": 40.712216, "lng": -74.22655},
@@ -68,15 +85,12 @@ export class CoordinatePage implements AfterViewInit, OnDestroy {
     this.originMarker.setPosition({"lat": 40.712216, "lng": -74.22655});
     this.destMarker.setPosition({"lat": 40.773941, "lng": -74.12544});
 
-    // this.svgTag.unpauseAnimations();
-
     this.map.addEventListener('bounds_changed', this._onRedraw);
     this.originMarker.addEventListener('position_changed', this._onRedraw);
     this.destMarker.addEventListener('position_changed', this._onRedraw);
   }
 
   redraw() {
-    // this.svgTag.pauseAnimations();
     const origin: LatLng = this.originMarker.getPosition();
     const dest: LatLng = this.destMarker.getPosition();
 
@@ -87,12 +101,11 @@ export class CoordinatePage implements AfterViewInit, OnDestroy {
     const top: number = Math.min(originPx.y, destPx.y);
     const width: number = Math.max(originPx.x, destPx.x) - left;
     const height: number = Math.max(originPx.y, destPx.y) - top;
-    console.log(`(${originPx.x}, ${destPx.x}) - (${width})`);
 
-    this.svgWrapper.style.left = `${ left }px`;
-    this.svgWrapper.style.top = `${ top }px`;
-    this.svgWrapper.style.width = `${ width }px`;
-    this.svgWrapper.style.height = `${ height }px`;
+    this.playGround.style.left = `${ left }px`;
+    this.playGround.style.top = `${ top }px`;
+    this.playGround.style.setProperty('--width', `${ width }px`);
+    this.playGround.style.setProperty('--height', `${ height }px`);
 
     let animateFromX: number = 0;
     let animateToX: number = width;
@@ -106,8 +119,10 @@ export class CoordinatePage implements AfterViewInit, OnDestroy {
       animateFromY = height;
       animateToY = 0;
     }
-    this.animateValues = `${ animateFromX },${ animateFromY }; ${ animateToX },${ animateToY }`;
-    // this.svgTag.unpauseAnimations();
+    this.playGround.style.setProperty('--animateFromX', `${ animateFromX }px`);
+    this.playGround.style.setProperty('--animateFromY', `${ animateFromY }px`);
+    this.playGround.style.setProperty('--animateToX', `${ animateToX }px`);
+    this.playGround.style.setProperty('--animateToY', `${ animateToY }px`);
   }
 
 }
