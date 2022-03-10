@@ -56,17 +56,47 @@ export class HomePage implements AfterViewInit {
   }
   onCameraButtonClick(event) {
 
+    const bounds: LatLngBounds = new LatLngBounds();
+
+    bounds.extend({
+      lat: 43.0763334001421,
+      lng: -89.38346928996582
+    });
+    bounds.extend({
+      lat: 43.0718505758718,
+      lng: -89.38437051219482
+    });
+    bounds.extend({
+      lat: 43.07658417782822,
+      lng: -89.37231130046386
+    });
+    bounds.extend({
+      lat: 43.08191296103446,
+      lng: -89.3734700147583
+    });
+    bounds.extend({
+      lat: 43.075737799024346,
+      lng: -89.39428395671386
+    });
+    
+    console.log(`bounds: ${bounds.toUrlValue()}`);
     this.map.moveCamera({
-      target: {lat: 43.08191296103446, lng: -89.3734700147583},
-      zoom: 15,
+      target: bounds,
       tilt: 60,
       heading: 0,
       duration: 5000
     });
+    // this.map.moveCamera({
+    //   target: {lat: 43.08191296103446, lng: -89.3734700147583},
+    //   zoom: 15,
+    //   tilt: 60,
+    //   heading: 0,
+    //   duration: 5000
+    // });
   }
 
   onRotateButtonClick(event) {
-    this.map.heading +=90;
+    this.map.setHeading(this.map.getHeading() + 90);
   }
 
 }
