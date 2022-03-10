@@ -1,65 +1,55 @@
+
 <ion-content [fullscreen]="true">
   <div id="container">
     <div id="toolbar">
-      <div>
-        <ion-button
-          (click)="onLayerToggleButtonClick($event)">toggle layer</ion-button>
-        <ion-button
-          (click)="onRotateButtonClick($event, -45)">rotate: -45</ion-button>
-        <ion-button
-          (click)="onRotateButtonClick($event, +45)">rotate: +45</ion-button>
-        <ion-button
-          (click)="onTiltButtonClick($event, -10)">tilt: -10</ion-button>
-        <ion-button
-          (click)="onTiltButtonClick($event, +10)">tilt: +10</ion-button>
-        <ion-button
-          (click)="onClearMarkers($event)">clear</ion-button>
-      </div>
+      <ion-button
+        (click)="onRotateButtonClick($even)">Rotate</ion-button>
+      <ion-button
+        (click)="onCameraButtonClick($even)">set Camera</ion-button>
     </div>
-    <div #mouseTouchLayer id="mouseTouchLayer" (click)="onMouseTouchLayer($event)"></div>
 
     <ogmp-map-view
       id="mapCanvas"
       jsMapId="283fb0722209eb1e"
       #mapCanvas
-
-      [center]="center"
-      [zoom]="zoom"
-      [tilt]="tilt"
-      [heading]="heading"
+      center="43.0763334001421, -89.38346928996582" zoom="17"
+      tilt="67.5"
+      heading="45"
       mapType="roadmap"
       (click)="onMapClick($event)">
-
       <ogmp-info-window #infoWnd1></ogmp-info-window>
 
       <ogmp-marker
-        message="Hello!"
-        class="greenIcon draggable"
+        message="car"
         (click)="onMarkerClick($event)"
+        class="car draggable"
         (dragend)="onMarkerDrop($event)"
         position="43.0763334001421, -89.38346928996582"></ogmp-marker>
 
-      <!--
       <ogmp-marker
         message="cafe"
         (click)="onMarkerClick($event)"
+        class="cafe"
         position="43.0718505758718, -89.38437051219482"></ogmp-marker>
 
       <ogmp-marker
         message="cafe"
         (click)="onMarkerClick($event)"
+        class="cafe"
         position="43.07658417782822, -89.37231130046386"></ogmp-marker>
 
       <ogmp-marker
         message="bar"
         (click)="onMarkerClick($event)"
+        class="bar"
         position="43.08191296103446, -89.3734700147583"></ogmp-marker>
 
       <ogmp-marker
+        class="bar"
         message="bar"
         (click)="onMarkerClick($event)"
         position="43.075737799024346, -89.39428395671386"></ogmp-marker>
-    -->
     </ogmp-map-view>
+
   </div>
 </ion-content>

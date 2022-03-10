@@ -77,10 +77,12 @@ export class CoordinatePage implements AfterViewInit, OnDestroy {
     })
 
     // Fits the camera to the given bounds
-    this.map.fitBounds([
-      {"lat": 40.712216, "lng": -74.22655},
-      {"lat": 40.773941, "lng": -74.12544}
-    ]);
+    this.map.moveCamera({
+      target: [
+        {"lat": 40.712216, "lng": -74.22655},
+        {"lat": 40.773941, "lng": -74.12544}
+      ]
+    });
 
     this.originMarker.setPosition({"lat": 40.712216, "lng": -74.22655});
     this.destMarker.setPosition({"lat": 40.773941, "lng": -74.12544});
