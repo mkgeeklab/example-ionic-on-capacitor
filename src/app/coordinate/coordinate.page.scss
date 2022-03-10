@@ -16,45 +16,9 @@
     min-height: 60vh;
     height: 100%;
 }
-#playground {
-
-  width: var(--width);
-  height: var(--height);
+#svgWrapper {
   position: absolute;
+  z-index: 10;
   user-select: none;
   pointer-events: none;
-
-  .circle {
-    position: absolute;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-
-    animation-name: movement;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-  }
-  .red {
-    background-color: red;
-    animation-timing-function: ease-in-out;
-  }
-  .green {
-    background-color: green;
-    animation-delay: 1s;
-    animation-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
-  }
-  .blue {
-    background-color: blue;
-    animation-timing-function: cubic-bezier(0.3, 0.2, 0.5, 1.0, 0.7);
-  }
-}
-
-@keyframes movement {
-  from {
-    transform: translate(calc(var(--animateFromX) - 15px), calc(var(--animateFromY) - 15px));
-  }
-  to {
-    transform: translate(calc(var(--animateToX) - 15px), calc(var(--animateToY) - 15px));
-  }
 }
