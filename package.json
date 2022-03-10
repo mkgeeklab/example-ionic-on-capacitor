@@ -9,7 +9,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "serve": "ionic serve --external --no-open",
+    "dev:android": "ng build --output-path android/app/src/main/assets/public --watch"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +30,7 @@
     "@juggle/resize-observer": "^3.3.0",
     "@open-google-maps-plugin/android": "file:../test-plugin-android",
     "@open-google-maps-plugin/core": "file:../test-plugin/dist",
+    "@open-google-maps-plugin/ios": "file:../test-plugin-ios",
     "animate.css": "^4.1.1",
     "commander": "^9.0.0",
     "mathjs": "^10.1.1",
