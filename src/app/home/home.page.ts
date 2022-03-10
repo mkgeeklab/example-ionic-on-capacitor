@@ -78,21 +78,13 @@ export class HomePage implements AfterViewInit {
       lat: 43.075737799024346,
       lng: -89.39428395671386
     });
-    
-    console.log(`bounds: ${bounds.toUrlValue()}`);
+
     this.map.moveCamera({
       target: bounds,
       tilt: 60,
       heading: 0,
       duration: 5000
     });
-    // this.map.moveCamera({
-    //   target: {lat: 43.08191296103446, lng: -89.3734700147583},
-    //   zoom: 15,
-    //   tilt: 60,
-    //   heading: 0,
-    //   duration: 5000
-    // });
   }
 
   onRotateButtonClick(event) {
