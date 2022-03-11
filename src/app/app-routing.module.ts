@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'no-map',
     pathMatch: 'full'
   },
   {
@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'map-coordinate',
     loadChildren: () => import('./coordinate/coordinate.module').then( m => m.CoordinatePageModule)
+  },
+  {
+    path: 'info-window',
+    loadChildren: () => import('./info-window/info-window.module').then( m => m.InfoWindowPageModule)
   },
 ];
 

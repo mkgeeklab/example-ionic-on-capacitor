@@ -1,0 +1,66 @@
+.wrapper {
+  --width: 140px;
+  --height: 90px;
+  width: var(--width);
+  height: var(--height);
+
+  .name {
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+    text-shadow: 2px 2px #FFFFFF88;
+  }
+
+  .stars {
+    --percent: calc(var(--rating) / 5 * 100%);
+
+    display: inline-block;
+    font-size: 1rem;
+    font-family: Times; // make sure ★ appears correctly
+    line-height: 1;
+
+    &::before {
+      content: '★★★★★';
+      letter-spacing: 3px;
+      background: linear-gradient(90deg, yellow var(--percent), black var(--percent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+  }
+  .price {
+    color: lightgreen;
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 4rem;
+    padding: 0.5rem;
+    background: #000000AA;
+    text-align: center;
+    margin: 0px 0px auto auto;
+    border-radius: 20%;
+  }
+
+}
+
+
+:root {
+  --star-size: 60px;
+  --star-color: #fff;
+  --star-background: #fc0;
+}
+
+
+// Just to make a preview more beautifull
+//
+// body {
+//   background: #eee;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100vh;
+// }
+//
+// * {
+//   position: relative;
+//   box-sizing: border-box;
+// }
