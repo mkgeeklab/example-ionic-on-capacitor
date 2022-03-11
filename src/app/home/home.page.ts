@@ -33,6 +33,7 @@ export class HomePage implements AfterViewInit {
     this.infoWnd1 = this.info1Ref.nativeElement;
     this.map = this.mapRef.nativeElement;
     this.map.addEventListener('ready', () => this.onMapReady());
+    this.map.addEventListener('click', () => this.onMapClick());
   }
 
   onMapReady() {
@@ -46,9 +47,17 @@ export class HomePage implements AfterViewInit {
     });
   }
 
+  onMapClick() {
+    this.infoWnd1.close();
+  }
   onMarkerClick(event) {
     const marker: Marker = event.target as Marker;
     const message: string = marker.getAttribute('message');
+
+    if (this.hasClass) {
+      this.hasClass = false;
+      this.infoWnd1.classList.remove("active_info", "animate__animated", "animate__flip");
+    }
 
     this.infoWnd1.setContent(message);
     this.infoWnd1.open(marker);

@@ -45,6 +45,9 @@ export class MarkersPage implements OnInit, AfterViewInit {
 
       // pass to the fitBounds()
       // this.map.fitBounds(locations);
+      this.map.moveCamera({
+        target: locations
+      })
     });
   }
   onMarkerSelect(event: CustomEvent) {

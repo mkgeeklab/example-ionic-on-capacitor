@@ -44,8 +44,8 @@ export class CustomInfoWindow extends InfoWindowBase {
   protected onAnchorPosition(x: number, y: number): IPoint {
     // 5. Invoked when decide the anchor of this InfoWindow.
     return {
-      x: 60,
-      y: 155
+      x: 40,
+      y: 145
     };
   }
 
