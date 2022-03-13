@@ -13,15 +13,14 @@
       jsMapId="283fb0722209eb1e"
       #mapCanvas
       center="43.0763334001421, -89.38346928996582" zoom="17"
-      tilt="67.5"
-      heading="45"
-      mapType="roadmap">
+      tilt="0"
+      heading="0"
+      mapType="none">
       <ogmp-info-window #infoWnd1></ogmp-info-window>
 
       <ogmp-marker
         message="<img src='assets/home/bar1.jpg' width='114' height='114' align='right' /><h3>Southland Bar</h3>This is one of the popular bars in this town!"
         (click)="onMarkerClick($event)"
-        class="car draggable"
         (dragend)="onMarkerDrop($event)"
         position="43.0763334001421, -89.38346928996582"></ogmp-marker>
 

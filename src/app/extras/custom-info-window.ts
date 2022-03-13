@@ -2,7 +2,7 @@ import { InfoWindowBase, ISize, IPoint } from '@open-google-maps-plugin/core';
 
 export class CustomInfoWindow extends InfoWindowBase {
 
-  private img_url: string = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAgCAYAAAABtRhCAAAAAXNSR0IArs4c6QAAAJZlWElmTU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAIdpAAQAAAABAAAATgAAAAAAAACQAAAAAQAAAJAAAAABAASShgAHAAAAEgAAAISgAQADAAAAAQABAACgAgAEAAAAAQAAABygAwAEAAAAAQAAACAAAAAAQVNDSUkAAABTY3JlZW5zaG90lyvY9AAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAdRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDYuMC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6ZXhpZj0iaHR0cDovL25zLmFkb2JlLmNvbS9leGlmLzEuMC8iPgogICAgICAgICA8ZXhpZjpQaXhlbFlEaW1lbnNpb24+MzI8L2V4aWY6UGl4ZWxZRGltZW5zaW9uPgogICAgICAgICA8ZXhpZjpQaXhlbFhEaW1lbnNpb24+Mjg8L2V4aWY6UGl4ZWxYRGltZW5zaW9uPgogICAgICAgICA8ZXhpZjpVc2VyQ29tbWVudD5TY3JlZW5zaG90PC9leGlmOlVzZXJDb21tZW50PgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KAmlbNQAAABxpRE9UAAAAAgAAAAAAAAAQAAAAKAAAABAAAAAQAAAAYdrJqlUAAAAtSURBVEgNYvwPBAx0BIyjFlI7tEeDlNohyjAapKNBSnIIjCYakoOMkAa6BykAAAD//wwOXyMAAAArSURBVGP8DwQMdASMoxZSO7RHg5TaIcowGqSjQUpyCIwmGpKDjJAGugcpAIqQf6G5z0HnAAAAAElFTkSuQmCC';
+  img_url: string = '';
 
   constructor() {
     super(0);
@@ -11,8 +11,8 @@ export class CustomInfoWindow extends InfoWindowBase {
   protected onContentMeasure(width: number, height: number): ISize {
     // 1. Invoked when measuring the contents size.
     return {
-      width: 140,
-      height: 90
+      width: 170,
+      height: 140
     };
   }
 
@@ -20,32 +20,32 @@ export class CustomInfoWindow extends InfoWindowBase {
   protected onTailSize(width: number, height: number): ISize {
     // 2. Invoked when measuring the tail size.
     return {
-      width: 0,
-      height: 0
+      width: 20,
+      height: 20
     };
   }
 
   protected onCanvasMeasure(width: number, height: number): ISize {
     // 3. Invoked when measuring the canvas size.
     return {
-      width: 200,
-      height: 155
+      width: 355,
+      height: 240
     };
   }
 
   protected onContentPosition(x: number, y: number): IPoint {
     // 4. Invoked when calculate the contents position.
     return {
-      x: 30,
-      y: 30
+      x: 120,
+      y: 50
     };
   }
 
   protected onAnchorPosition(x: number, y: number): IPoint {
     // 5. Invoked when decide the anchor of this InfoWindow.
     return {
-      x: 40,
-      y: 145
+      x: 190,
+      y: 240
     };
   }
 
@@ -57,9 +57,10 @@ export class CustomInfoWindow extends InfoWindowBase {
   protected onCanvas(canvas: HTMLCanvasElement): void {
     // 7. Invoked when drawing an InfoWindow on the canvas.
 
-    const canvasSize: ISize = this.getCanvasSize();
-    const width: number = canvasSize.width;
-    const height: number = canvasSize.height;
+    const contentPosition: IPoint = this.getContentPosition();
+    const tailSize: ISize = this.getTailSize();
+    const contentSize: ISize = this.getContentSize();
+
 
     const ctx: CanvasRenderingContext2D | null = canvas.getContext("2d");
 
@@ -70,31 +71,53 @@ export class CustomInfoWindow extends InfoWindowBase {
     const image: HTMLImageElement = new Image();
     image.src = this.img_url;
     image.addEventListener('load', e => {
-      ctx.save();
-
-      ctx.strokeStyle = '#00000088';
-      ctx.fillStyle = 'white';
-      ctx.lineWidth = 3;
-      // ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-      // ctx.shadowOffsetX = 2;
-      // ctx.shadowOffsetY = 2;
-      // ctx.shadowBlur = 5;
 
       ctx.beginPath();
-      ctx.ellipse(100, 75, 97, 70, 0, 135 * Math.PI / 180, 110 * Math.PI / 180);
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+      ctx.fillStyle = 'white';
+      ctx.shadowOffsetX = 5;
+      ctx.shadowOffsetY = 5;
+      ctx.shadowBlur = 5;
 
-      ctx.quadraticCurveTo(60, 140, 40, 150);
-      ctx.lineTo(30, 125);
-      ctx.fill();
+      ctx.moveTo(50, 120);
+      ctx.arc(60, 60, 57, 0.65 * Math.PI, 1.84 * Math.PI);
+
+      // top-left => top-right
+      ctx.lineTo(350, 33);
+
+      // bottom-right
+      ctx.lineTo(350, 210);
+
+      // bottom-tail-right
+      ctx.lineTo(190 + tailSize.width / 2, 210);
+      // tail-right => tail-bottom-middle
+      ctx.lineTo(190, 210 + tailSize.height);
+      // bottom-tail-left
+      ctx.lineTo(190 - tailSize.width / 2, 210);
+      // bottom-left
+      ctx.lineTo(30, 210);
+      ctx.lineTo(30, 100);
       ctx.stroke();
+      ctx.fill();
+
       ctx.closePath();
 
-      ctx.clip();
-      ctx.globalAlpha = 0.4;
-      ctx.drawImage(image, 0, 0, 200, 150);
-      ctx.globalAlpha = 1;
+      // -------------
+      //  draw image
+      // -------------
+      ctx.save();
 
+      ctx.strokeStyle = 'transparent';
+      ctx.lineWidth = 0;
+
+      ctx.beginPath();
+      ctx.arc(60, 60, 50, 0, 2 * Math.PI);
+      ctx.clip();
+      ctx.drawImage(image, 10, 10, 120, 120);
+      ctx.stroke();
+      ctx.closePath();
       ctx.restore();
+
     });
 
   }

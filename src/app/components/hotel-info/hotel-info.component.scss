@@ -1,8 +1,9 @@
 .wrapper {
-  --width: 140px;
-  --height: 90px;
+  --width: 220px;
+  --height: 150px;
   width: var(--width);
   height: var(--height);
+  position: relative;
 
   .name {
     font-size: 1rem;
@@ -22,13 +23,16 @@
     &::before {
       content: '★★★★★';
       letter-spacing: 3px;
-      background: linear-gradient(90deg, yellow var(--percent), black var(--percent));
+      background: linear-gradient(90deg, orange var(--percent), black var(--percent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
   }
   .price {
+    position: absolute;
+    left: -80px;
+    top: 110px;
     color: lightgreen;
     font-size: 1.2rem;
     font-weight: bold;
