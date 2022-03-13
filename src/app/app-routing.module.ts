@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'info-window',
+    redirectTo: 'no-map',
     pathMatch: 'full'
   },
   {

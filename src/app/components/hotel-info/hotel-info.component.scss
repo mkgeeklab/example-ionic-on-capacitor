@@ -44,6 +44,16 @@
     border-radius: 20%;
   }
 
+  .pictures {
+    display: flex;
+
+    img {
+      width: 50px;
+      height: auto;
+      border-radius: 10%;
+      margin: 5px;
+    }
+  }
 }
 
 
@@ -52,19 +62,3 @@
   --star-color: #fff;
   --star-background: #fc0;
 }
-
-
-// Just to make a preview more beautifull
-//
-// body {
-//   background: #eee;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 100vh;
-// }
-//
-// * {
-//   position: relative;
-//   box-sizing: border-box;
-// }

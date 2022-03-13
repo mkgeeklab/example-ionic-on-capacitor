@@ -57,9 +57,9 @@ export class InfoWindowPage implements AfterViewInit {
     if (this.compRef) this.compRef.destroy();
 
     this.compRef = this.resolver.resolveComponentFactory(HotelInfo).create(this.injector);
-    this.compRef.instance.name = 'Freehand Los Angeles';
+    this.compRef.instance.name = 'Best Eastern Hotel';
     this.compRef.instance.stars = 5;
-    this.compRef.instance.price = '$79';
+    this.compRef.instance.price = '$85';
     this.infoWnd.setImageUrl('assets/hotel/hotel1.jpg');
     this.compRef.changeDetectorRef.detectChanges();
 
