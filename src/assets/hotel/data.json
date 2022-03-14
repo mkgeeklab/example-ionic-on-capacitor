@@ -1,13 +1,13 @@
 [
   {
-    "id": "hollywood_hotel_is_open",
-    "name": "Hollywood Hotel ® is OPEN",
-    "price": "82",
-    "start": 3.8,
+    "id": "intercontinental_la",
+    "name": "InterContinental Los Angeles Downtown, an IHG Hotel",
+    "price": "232",
+    "start": 4.5,
     "thumbnail": "img1.jpeg",
     "position": {
-      "lat": 34.0930417,
-      "lng": -118.2936312
+      "lat": 34.0501409,
+      "lng": -118.2624883
     },
     "pictures": [
       "img1.jpeg",
@@ -16,8 +16,8 @@
     ],
     "services": [
       {
-        "icon": "wifi-outline",
-        "label": "Free Wifi"
+        "icon": "diamond-outline",
+        "label": "High rating hotel"
       },
       {
         "icon": "paw-outline",
@@ -26,14 +26,14 @@
     ]
   },
   {
-    "id": "h_hotel",
-    "name": "H Hotel",
-    "price": "94",
-    "start": 3.8,
+    "id": "the_hoxton_downtown_la",
+    "name": "The Hoxton, Downtown LA",
+    "price": "179",
+    "start": 4.3,
     "thumbnail": "img1.jpeg",
     "position": {
-      "lat": 34.0527026,
-      "lng": -118.3206315
+      "lat": 34.0397852,
+      "lng": -118.2607442
     },
     "pictures": [
       "img1.jpeg",
@@ -42,12 +42,38 @@
     ],
     "services": [
       {
-        "icon": "wifi-outline",
-        "label": "Free Wifi"
+        "icon": "wine-outline",
+        "label": "Great bar"
       },
       {
-        "icon": "cafe-outline",
-        "label": "Breakfast (extra charge)"
+        "icon": "train-outline",
+        "label": "Near public transit"
+      }
+    ]
+  },
+  {
+    "id": "citizenm_la_downtown",
+    "name": "citizenM Los Angeles Downtown",
+    "price": "179",
+    "start": 4.3,
+    "thumbnail": "img1.jpeg",
+    "position": {
+      "lat": 34.0490034,
+      "lng": -118.2505958
+    },
+    "pictures": [
+      "img1.jpeg",
+      "img2.jpeg",
+      "img3.jpeg"
+    ],
+    "services": [
+      {
+        "icon": "car-outline",
+        "label": "Parking"
+      },
+      {
+        "icon": "restaurant-outline",
+        "label": "Restaurant"
       }
     ]
   },
