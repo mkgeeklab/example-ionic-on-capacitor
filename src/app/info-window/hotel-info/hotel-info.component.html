@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <div class="name">{{ data.name }}</div>
+  <div class="rating">
+    <div class="label">{{ data.stars }}</div>
+    <div class="stars" style="--rating: {{ data.stars }};"></div>
+  </div>
+  <div class="price">${{ data.price }}</div>
+  <div class="services" *ngFor="let item of data.services | slice:0:2">
+    <div class="service"><ion-icon name="{{ item.icon }}"></ion-icon>{{ item.label }}</div>
+  </div>
+  <div class="pictures">
+    <img src="{{ pictureBaseUrl }}/{{ fileName }}"  *ngFor="let fileName of data.pictures">
+  </div>
+</div>

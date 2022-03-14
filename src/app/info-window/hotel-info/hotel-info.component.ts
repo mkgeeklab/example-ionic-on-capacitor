@@ -4,6 +4,7 @@ import {
   Input,
   ViewEncapsulation
 } from '@angular/core';
+import { Hotel, HotelService } from '../extras/hotel';
 
 @Component({
   selector: 'hotel-info',
@@ -12,11 +13,16 @@ import {
 })
 export class HotelInfo implements OnInit {
 
-  @Input() name: string;
-  @Input() stars: number;
-  @Input() price: string;
+  pictureBaseUrl: string = '';
+  data: Hotel | undefined = undefined;
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
+  public setData(pictureBaseUrl: string, data: Hotel) {
+    this.pictureBaseUrl = pictureBaseUrl;
+    this.data = data;
+  }
 }

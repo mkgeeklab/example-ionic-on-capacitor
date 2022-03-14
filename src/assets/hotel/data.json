@@ -1,0 +1,170 @@
+[
+  {
+    "id": "hollywood_hotel_is_open",
+    "name": "Hollywood Hotel ® is OPEN",
+    "price": "82",
+    "start": 3.8,
+    "thumbnail": "img1.jpeg",
+    "position": {
+      "lat": 34.0930417,
+      "lng": -118.2936312
+    },
+    "pictures": [
+      "img1.jpeg",
+      "img2.jpeg",
+      "img3.jpeg"
+    ],
+    "services": [
+      {
+        "icon": "wifi-outline",
+        "label": "Free Wifi"
+      },
+      {
+        "icon": "paw-outline",
+        "label": "Pet friendly"
+      }
+    ]
+  },
+  {
+    "id": "h_hotel",
+    "name": "H Hotel",
+    "price": "94",
+    "start": 3.8,
+    "thumbnail": "img1.jpeg",
+    "position": {
+      "lat": 34.0527026,
+      "lng": -118.3206315
+    },
+    "pictures": [
+      "img1.jpeg",
+      "img2.jpeg",
+      "img3.jpeg"
+    ],
+    "services": [
+      {
+        "icon": "wifi-outline",
+        "label": "Free Wifi"
+      },
+      {
+        "icon": "cafe-outline",
+        "label": "Breakfast (extra charge)"
+      }
+    ]
+  },
+  {
+    "id": "omni_la_hotel",
+    "name": "Omni Los Angeles Hotel at California Plaza",
+    "price": "203",
+    "start": 4.5,
+    "thumbnail": "img1.jpeg",
+    "position": {
+      "lat": 34.0525802,
+      "lng": -118.2527801
+    },
+    "pictures": [
+      "img1.jpeg",
+      "img2.jpeg",
+      "img3.jpeg"
+    ],
+    "services": [
+      {
+        "icon": "train-outline",
+        "label": "Near public transit"
+      },
+      {
+        "icon": "restaurant-outline",
+        "label": "Great Dining"
+      }
+    ]
+  },
+  {
+    "id": "millennium_biltmore_hotel_la",
+    "name": "Millennium Biltmore Hotel Los Angeles",
+    "price": "135",
+    "start": 4.5,
+    "thumbnail": "img1.jpeg",
+    "position": {
+      "lat": 34.0497765,
+      "lng": -118.256381
+    },
+    "pictures": [
+      "img1.jpeg",
+      "img2.jpeg",
+      "img3.jpeg"
+    ],
+    "services": [
+      {
+        "icon": "thumbs-up-outline",
+        "label": "Popular Hotel"
+      },
+      {
+        "icon": "restaurant-outline",
+        "label": "Restaurant"
+      },
+      {
+        "icon": "beer-outline",
+        "label": "Bar"
+      }
+    ]
+  },
+  {
+    "id": "the_wayfarer_downtown_la",
+    "name": "The Wayfarer Downtown Los Angeles",
+    "price": "184",
+    "start": 4.2,
+    "thumbnail": "img1.jpeg",
+    "position": {
+      "lat": 34.0470944,
+      "lng": -118.2626975
+    },
+    "pictures": [
+      "img1.jpeg",
+      "img2.jpeg",
+      "img3.jpeg"
+    ],
+    "services": [
+      {
+        "icon": "wifi-outline",
+        "label": "Free Wifi"
+      },
+      {
+        "icon": "car-outline",
+        "label": "Parking"
+      },
+      {
+        "icon": "restaurant-outline",
+        "label": "Restaurant"
+      }
+    ]
+  },
+  {
+    "id": "freehand_los_angeles",
+    "name": "Freehand Los Angeles",
+    "price": "85",
+    "start": 4.2,
+    "thumbnail": "img3.jpg",
+    "position": {
+      "lat": 34.044814,
+      "lng": -118.25666
+    },
+    "pictures": [
+      "img1.jpg",
+      "img2.png",
+      "img3.jpg"
+    ],
+    "services": [
+      {
+        "icon": "wifi-outline",
+        "label": "Free Wifi"
+      },
+      {
+        "icon": "shirt-outline",
+        "label": "Laundry"
+      },
+      {
+        "icon": "cafe-outline",
+        "label": "Breakfast (Extra charge)"
+      }
+    ]
+  }
+]

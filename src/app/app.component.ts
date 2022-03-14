@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { OpenGoogleMapsInitializer } from '@open-google-maps-plugin/core';
-import { CustomInfoWindow } from './extras/custom-info-window';
 
 @Component({
   selector: 'app-root',
@@ -39,7 +38,6 @@ export class AppComponent implements OnInit {
     OpenGoogleMapsInitializer({
       'API_KEY_FOR_BROWSER': "AIzaSyBpNKkll5yJ2YbS-i0dE5yIdEk8sef-S6g"
     });
-    window.customElements.define('custom-info-window', CustomInfoWindow);
   }
 
 }

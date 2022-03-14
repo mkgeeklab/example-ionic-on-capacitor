@@ -73,11 +73,11 @@ export class CustomInfoWindow extends InfoWindowBase {
     image.addEventListener('load', e => {
 
       ctx.beginPath();
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
       ctx.fillStyle = 'white';
-      ctx.shadowOffsetX = 5;
-      ctx.shadowOffsetY = 5;
-      ctx.shadowBlur = 5;
+      ctx.shadowOffsetX = 3;
+      ctx.shadowOffsetY = 3;
+      ctx.shadowBlur = 3;
 
       ctx.moveTo(50, 120);
       ctx.arc(60, 60, 57, 0.65 * Math.PI, 1.84 * Math.PI);
