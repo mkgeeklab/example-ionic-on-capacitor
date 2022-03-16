@@ -4,3 +4,6 @@ project(':capacitor-android').projectDir = new File('../node_modules/@capacitor/
 
 include ':open-google-maps-plugin-android'
 project(':open-google-maps-plugin-android').projectDir = new File('../node_modules/@open-google-maps-plugin/android/src')
+
+include ':open-google-maps-plugin-capacitor'
+project(':open-google-maps-plugin-capacitor').projectDir = new File('../node_modules/@open-google-maps-plugin/capacitor/android')

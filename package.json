@@ -29,6 +29,7 @@
     "@ionic/angular": "^5.0.0",
     "@juggle/resize-observer": "^3.3.0",
     "@open-google-maps-plugin/android": "file:../test-plugin-android",
+    "@open-google-maps-plugin/capacitor": "file:../test-plugin-capacitor",
     "@open-google-maps-plugin/core": "file:../test-plugin/dist",
     "@open-google-maps-plugin/ios": "file:../test-plugin-ios",
     "animate.css": "^4.1.1",

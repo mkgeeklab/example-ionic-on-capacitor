@@ -29,7 +29,7 @@ import com.getcapacitor.PluginHandle;
 
 import java.util.ArrayList;
 
-import plugins.google.maps.capacitor.OpenGoogleMaps;
+import plugins.capacitor.OpenGoogleMaps;
 
 public class MainActivity extends BridgeActivity {
 
