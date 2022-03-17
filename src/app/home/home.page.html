@@ -1,52 +1,128 @@
 
 <ion-content [fullscreen]="true">
   <div id="container">
-    <div id="toolbar">
-      <ion-button
-        (click)="onRotateButtonClick($even)">Rotate</ion-button>
-      <ion-button
-        (click)="onCameraButtonClick($even)">set Camera</ion-button>
-    </div>
 
     <ogmp-map-view
       id="mapCanvas"
       jsMapId="283fb0722209eb1e"
       #mapCanvas
-      center="43.0763334001421, -89.38346928996582" zoom="17"
-      tilt="0"
-      heading="0"
-      mapType="none">
+      center="48.869826453122236, 2.344980979293237" zoom="17"
+      tilt="50"
+      heading="20">
+
+      <ion-button
+        slot="contents"
+        (click)="onRotateButtonClick($even)">
+        <ion-icon name="arrow-undo-circle-outline"></ion-icon>
+        Rotate</ion-button>
+      <ion-button
+        slot="contents"
+        (click)="onCameraButtonClick($even)">set Camera</ion-button>
       <ogmp-info-window #infoWnd1></ogmp-info-window>
 
       <ogmp-marker
-        message="<img src='assets/home/bar1.jpg' width='114' height='114' align='right' /><h3>Southland Bar</h3>This is one of the popular bars in this town!"
+        #centerMarker
         (click)="onMarkerClick($event)"
-        (dragend)="onMarkerDrop($event)"
-        position="43.0763334001421, -89.38346928996582"></ogmp-marker>
+        position="48.869826453122236, 2.344980979293237">
+
+        <h3>Welcome to new maps plugin!</h3>
+        <section>
+          Original components/API for Google Maps APIs on Android, iOS and Web!
+        </section>
+      </ogmp-marker>
 
       <ogmp-marker
-        message="cafe"
+        class="cafe"
+        (click)="onMarkerClick($event)"
+        position="48.85938405427252, 2.3235041781053125">
+
+        <img src='assets/home/cafe1.jpg' align='right' />
+        <h3>Cuppa - Salon de Café</h3>
+        <section>
+          Tiny, glass-fronted nook offering breakfast, coffee, house-made cakes & light meals.
+        </section>
+      </ogmp-marker>
+
+      <ogmp-marker
         (click)="onMarkerClick($event)"
         class="cafe"
-        position="43.0718505758718, -89.38437051219482"></ogmp-marker>
+        position="48.85443729877828, 2.355783238061027">
+
+        <img src='assets/home/cafe2.jpg' align='right' />
+        <h3>The Caféothèque of Paris</h3>
+        <section>
+          Cozy coffeeshop offering highly trained baristas, hip artwork & beans from around the world.
+        </section>
+      </ogmp-marker>
 
       <ogmp-marker
-        message="cafe"
         (click)="onMarkerClick($event)"
         class="cafe"
-        position="43.07658417782822, -89.37231130046386"></ogmp-marker>
+        position="48.88065735202147, 2.340754520227556">
+
+        <img src='assets/home/cafe3.jpg' align='right' />
+        <h3>KB CaféShop</h3>
+        <section>
+          Coffee from worldwide sources roasted in-house & served in hot & cold drinks on a pavement terrace
+        </section>
+
+      </ogmp-marker>
 
       <ogmp-marker
-        message="<img src='assets/home/bar2.jpg' width='114' height='114' align='right' /><h3>Southland Bar</h3>Great selection of beer with the best prices in town!"
         (click)="onMarkerClick($event)"
-        class="bar"
-        position="43.08191296103446, -89.3734700147583"></ogmp-marker>
+        class="cafe"
+        position="48.847885196080476, 2.347073579366156">
+
+        <img src='assets/home/cafe4.jpg' align='right' />
+        <h3>Jozi Café</h3>
+        <section>
+          Artisanal coffee, pancakes, avocado toast & pastries, from breakfast on, at a bright, colorful cafe.
+        </section>
+
+      </ogmp-marker>
 
       <ogmp-marker
-        class="bar"
-        message="bar"
+        class="cafe"
         (click)="onMarkerClick($event)"
-        position="43.075737799024346, -89.39428395671386"></ogmp-marker>
+        position="48.86527812902362, 2.336551264527852">
+
+
+        <img src='assets/home/cafe5.jpg' align='right' />
+        <h3>Jozi Café</h3>
+        <section>
+          Pastries & organic breakfast eggs, plus toasted sandwiches, in a cool cafe with exposed stone walls.
+        </section>
+
+      </ogmp-marker>
+
+      <ogmp-marker
+        class="cafe"
+        (click)="onMarkerClick($event)"
+        position="48.84374527017778, 2.295592551751733">
+
+
+        <img src='assets/home/cafe6.jpg' align='right' />
+        <h3>Good News Coffee Shop</h3>
+        <section>
+          Artisanal coffee, plus healthy salads, rolls & cakes, for breakfast & lunch in a light-filled cafe.
+        </section>
+
+      </ogmp-marker>
+
+
+      <ogmp-marker
+        class="cafe"
+        (click)="onMarkerClick($event)"
+        position="48.86870067097262, 2.359778781391679">
+
+
+        <img src='assets/home/cafe7.jpg' align='right' />
+        <h3>Café Petite</h3>
+        <section>
+          Brasserie classics with a focus on seasonality, plus breakfast & coffee, in a simple setting.
+        </section>
+
+      </ogmp-marker>
     </ogmp-map-view>
 
   </div>

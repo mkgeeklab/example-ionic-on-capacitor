@@ -128,3 +128,6 @@ export class CustomInfoWindow extends InfoWindowBase {
     this.onDraw();
   }
 }
+if (window.customElements.get('custom-info-window') === undefined) {
+  window.customElements.define('custom-info-window', CustomInfoWindow);
+}

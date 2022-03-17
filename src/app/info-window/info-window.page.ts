@@ -55,7 +55,6 @@ export class InfoWindowPage implements OnInit, AfterViewInit, OnDestroy {
 
 
   ngOnInit() {
-    window.customElements.define('custom-info-window', CustomInfoWindow);
   }
 
   ngAfterViewInit() {
@@ -84,8 +83,9 @@ export class InfoWindowPage implements OnInit, AfterViewInit, OnDestroy {
       // Fits camera viewport
       this.map.moveCamera({
         target: locations
-      })
+      });
     });
+
   }
 
   ngOnDestroy() {

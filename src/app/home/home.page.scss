@@ -42,46 +42,12 @@ ion-content {
   height: calc(100% - 56px);
 }
 
-#toolbar {
-  position: absolute;
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  user-select: none;
-}
 
-.something {
-  background-color: red;
-  width:80%;
-  height: 300px;
-}
-
-.clickable {
-  --clickable: true;
-}
-
-.draggable {
-  --draggable: true;
-}
-.hide {
-  --visible: false;
-}
-.hidden {
-  display: none;
-}
-.car {
-  --icon: url("/assets/beer.png");
-}
 
 .cafe {
   --icon: url("/assets/coffee-cup.svg");
   --anchor-point-x: 0.5;
   --anchor-point-y: 0.2;
-}
-
-.bar {
-  --icon: url("/assets/beer.png");
 }
 
 .custom_icon {
@@ -91,27 +57,22 @@ ion-content {
   --info-anchor-point-x: 0.83;
   --info-anchor-point-y: 0.08;
 }
-.active_info {
-  background-color: gold;
+.night_mode {
+  background-color: rgb(57,57,57);
   color: white;
-  border-color: red;
+  border-color: #2c2c2c;
   border-radius: 10px;
 }
 .greenIcon {
   --icon: url("/assets/beer.png");
 }
+ogmp-info-window {
+  text-align: center;
 
-#mouseTouchLayer {
-   position: absolute;
-   width: 100%;
-   height: 100%;
-   left: 0px;
-   top: 0px;
-   right: 0px;
-   bottom: 0px;
-   z-index: 1;
-   overflow: visible;
-   color: black;
-   background: rgba(0, 0, 0, 0.2);
-   user-select: "pointer";
+  section {
+    display: flex;
+    max-width: 400px;
+    text-align: left;
+    padding: 10px;
+  }
 }
