@@ -2,45 +2,36 @@ ion-content {
   --overflow: hidden;
 }
 #container {
-  text-align: center;
-  display: flex;
-  flex-direction: row;
   margin-top: 56px;
   height: 100%;
   position: relative;
+
+  strong {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 22px;
+
+    color: #8c8c8c;
+
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  #mapCanvas {
+    position: relative;
+    left: 0px;
+    right: 0px;
+    height: calc(50% - 56px);
+  }
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
-
-#list {
-  width: 300px;
-  height: 200px;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-#mapCanvas {
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  height: calc(100% - 56px);
-}
 
 
 
@@ -50,22 +41,13 @@ ion-content {
   --anchor-point-y: 0.2;
 }
 
-.custom_icon {
-  --icon: url("/assets/custom_icon.png");
-  --anchor-point-x: 0.21;
-  --anchor-point-y: 0.96;
-  --info-anchor-point-x: 0.83;
-  --info-anchor-point-y: 0.08;
-}
 .night_mode {
   background-color: rgb(57,57,57);
   color: white;
   border-color: #2c2c2c;
   border-radius: 10px;
 }
-.greenIcon {
-  --icon: url("/assets/beer.png");
-}
+
 ogmp-info-window {
   text-align: center;
 
@@ -75,4 +57,8 @@ ogmp-info-window {
     text-align: left;
     padding: 10px;
   }
+}
+
+markdown {
+  color: white;
 }

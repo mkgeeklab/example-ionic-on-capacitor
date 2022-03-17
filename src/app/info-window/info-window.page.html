@@ -11,12 +11,11 @@
     #mapCanvas
     mapType="roadmap">
 
-    <ng-template ngFor let-item [ngForOf]="hotels | keyvalue">
-      <ogmp-marker
-        (click)="onMarkerSelect($event, item.value)"
-        position="{{item.value.position.lat}},{{item.value.position.lng}}"
-        ></ogmp-marker>
-    </ng-template>
+    <ogmp-marker
+      *ngFor="let hotel of hotels"
+      (click)="onMarkerSelect($event, hotel)"
+      position="{{hotel.position.lat}},{{hotel.position.lng}}">
+    </ogmp-marker>
 
   </ogmp-map-view>
 </ion-content>

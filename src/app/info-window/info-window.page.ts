@@ -1,7 +1,6 @@
 import {
   Component,
   AfterViewInit,
-  OnInit,
   OnDestroy,
   ViewChild,
   ComponentFactoryResolver,
@@ -33,14 +32,14 @@ import { CustomInfoWindow } from './extras/custom-info-window';
   templateUrl: './info-window.page.html',
   styleUrls: ['./info-window.page.scss']
 })
-export class InfoWindowPage implements OnInit, AfterViewInit, OnDestroy {
+export class InfoWindowPage implements AfterViewInit, OnDestroy {
 
   infoWnd: any;
 
   compRef: ComponentRef<HotelInfo>;
 
   dataUrl: string = 'assets/hotel/data.json';
-  hotels: Map<String, Hotel> = new Map<String, Hotel>();
+  hotels: Hotel[] = [];
 
   @ViewChild('mapCanvas') mapRef: ElementRef;
   map: MapView;
@@ -52,10 +51,6 @@ export class InfoWindowPage implements OnInit, AfterViewInit, OnDestroy {
     private zone: NgZone,
     private http: HttpClient
   ) { }
-
-
-  ngOnInit() {
-  }
 
   ngAfterViewInit() {
     this.map = this.mapRef.nativeElement;
@@ -71,13 +66,12 @@ export class InfoWindowPage implements OnInit, AfterViewInit, OnDestroy {
       this.infoWnd.close();
     });
 
-    // Load starbucks_locations.json
+    // Load data.json
     this.getHotels().subscribe((hotels: Hotel[]) => {
+      this.hotels = hotels;
 
-      const locations: ILatLng[] = [];
-      hotels.forEach((hotel: Hotel): void => {
-        this.hotels.set(hotel.id, hotel);
-        locations.push(hotel.position);
+      const locations: ILatLng[] = hotels.map((hotel: Hotel): ILatLng => {
+        return hotel.position;
       });
 
       // Fits camera viewport
