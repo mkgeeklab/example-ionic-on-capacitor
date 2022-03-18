@@ -1,132 +1,122 @@
 
 <ion-content [fullscreen]="true">
-  <div id="container">
 
-    <ogmp-map-view
-      id="mapCanvas"
-      jsMapId="283fb0722209eb1e"
-      #mapCanvas
-      center="48.869826453122236, 2.344980979293237" zoom="17"
-      tilt="65"
-      heading="20">
+  <ogmp-map-view
+    id="mapCanvas"
+    jsMapId="283fb0722209eb1e"
+    #mapCanvas
+    center="48.86527812902362, 2.336551264527852" zoom="17"
+    tilt="65"
+    heading="20">
 
-      <ion-button
-        slot="contents"
-        (click)="onRotateButtonClick($even)">
-        <ion-icon name="arrow-undo-circle-outline"></ion-icon>
-        Rotate</ion-button>
-      <ion-button
-        slot="contents"
-        (click)="onCameraButtonClick($even)">set Camera</ion-button>
-      <ogmp-info-window #infoWnd1></ogmp-info-window>
+    <ogmp-info-window #infoWnd></ogmp-info-window>
 
-      <ogmp-marker
-        #centerMarker
-        (click)="onMarkerClick($event)"
-        position="48.869826453122236, 2.344980979293237">
+    <ogmp-marker
+      #marker
+      (click)="onMarkerClick($event)"
+      position="48.86527812902362, 2.336551264527852">
 
-        <h3>Welcome to new maps plugin!</h3>
-        <section>
-          Original components/API for Google Maps APIs on Android, iOS and Web!
-        </section>
-      </ogmp-marker>
+      <h3>Welcome to new maps plugin!</h3>
+      <section>
+        Original components & API for Google Maps APIs on Android, iOS and Web!
+      </section>
+      <div class="navigation">
+        <ion-button class="right" color="light" (click)="moveCamera(1)"><ion-icon name="arrow-forward-circle-outline"></ion-icon>Next</ion-button>
+      </div>
+    </ogmp-marker>
 
-      <ogmp-marker
-        class="cafe"
-        (click)="onMarkerClick($event)"
-        position="48.85938405427252, 2.3235041781053125">
+    <ogmp-marker
+      #marker
+      (click)="onMarkerClick($event)"
+      class="cafe"
+      position="48.85938405427252, 2.3235041781053125">
 
-        <img src='assets/home/cafe1.jpg' align='right' />
-        <h3>Cuppa - Salon de Café</h3>
-        <section>
-          Tiny, glass-fronted nook offering breakfast, coffee, house-made cakes & light meals.
-        </section>
-      </ogmp-marker>
+      <h3>One code for all!</h3>
+      <section>
+        Support web and mobile platforms.
+        Write one code with the maps API, and then run on them quickly!
+      </section>
+      <div class="navigation">
+        <ion-button class="right" color="light" (click)="moveCamera(0)"><ion-icon name="arrow-back-circle-outline"></ion-icon>Back</ion-button>
+        <ion-button class="right" color="light" (click)="moveCamera(2)"><ion-icon name="arrow-forward-circle-outline"></ion-icon>Next</ion-button>
+      </div>
+    </ogmp-marker>
 
-      <ogmp-marker
-        (click)="onMarkerClick($event)"
-        class="cafe"
-        position="48.85443729877828, 2.355783238061027">
-
-        <img src='assets/home/cafe2.jpg' align='right' />
-        <h3>The Caféothèque of Paris</h3>
-        <section>
-          Cozy coffeeshop offering highly trained baristas, hip artwork & beans from around the world.
-        </section>
-      </ogmp-marker>
-
-      <ogmp-marker
-        (click)="onMarkerClick($event)"
-        class="cafe"
-        position="48.88065735202147, 2.340754520227556">
-
-        <img src='assets/home/cafe3.jpg' align='right' />
-        <h3>KB CaféShop</h3>
-        <section>
-          Coffee from worldwide sources roasted in-house & served in hot & cold drinks on a pavement terrace
-        </section>
-
-      </ogmp-marker>
-
-      <ogmp-marker
-        (click)="onMarkerClick($event)"
-        class="cafe"
-        position="48.847885196080476, 2.347073579366156">
-
-        <img src='assets/home/cafe4.jpg' align='right' />
-        <h3>Jozi Café</h3>
-        <section>
-          Artisanal coffee, pancakes, avocado toast & pastries, from breakfast on, at a bright, colorful cafe.
-        </section>
-
-      </ogmp-marker>
-
-      <ogmp-marker
-        class="cafe"
-        (click)="onMarkerClick($event)"
-        position="48.86527812902362, 2.336551264527852">
+    <ogmp-marker
+      #marker
+      class="cafe"
+      (click)="onMarkerClick($event)"
+      position="48.847885196080476, 2.347073579366156">
 
 
-        <img src='assets/home/cafe5.jpg' align='right' />
-        <h3>Jozi Café</h3>
-        <section>
-          Pastries & organic breakfast eggs, plus toasted sandwiches, in a cool cafe with exposed stone walls.
-        </section>
+      <h3>Free to use!</h3>
+      <section>
+        Provide the useful license for individual and commercial usages.
+        Use the maps plugin in your apps and/or web sites from now!
+      </section>
+      <div class="navigation">
+        <ion-button class="right" color="light" (click)="moveCamera(1)"><ion-icon name="arrow-back-circle-outline"></ion-icon>Back</ion-button>
+        <ion-button class="right" color="light" (click)="moveCamera(3)"><ion-icon name="arrow-forward-circle-outline"></ion-icon>Next</ion-button>
+      </div>
 
-      </ogmp-marker>
+    </ogmp-marker>
 
-      <ogmp-marker
-        class="cafe"
-        (click)="onMarkerClick($event)"
-        position="48.84374527017778, 2.295592551751733">
+    <ogmp-marker
+      #marker
+      (click)="onMarkerClick($event)"
+      class="cafe"
+      position="48.85443729877828, 2.355783238061027">
+
+      <h3>Manupulate like HTML elements!</h3>
+      <section>
+        Provide web components to manupulate the Google Maps API.
+        Write HTML tags, design with CSS, and manupulate through JavaScript!
+      </section>
+      <div class="navigation">
+        <ion-button class="right" color="light" (click)="moveCamera(2)"><ion-icon name="arrow-back-circle-outline"></ion-icon>Back</ion-button>
+        <ion-button class="right" color="light" (click)="moveCamera(4)"><ion-icon name="arrow-forward-circle-outline"></ion-icon>Next</ion-button>
+      </div>
+
+    </ogmp-marker>
+
+    <ogmp-marker
+      #marker
+      class="cafe"
+      (click)="onMarkerClick($event)"
+      position="48.869826453122236, 2.344980979293237">
+
+      <h3>Easy to use!</h3>
+      <section>
+        Provide the original API similar to Google Maps JavaScript API.
+        The API is desgined to go trhough with easy!
+      </section>
+      <div class="navigation">
+        <ion-button class="right" color="light" (click)="moveCamera(3)"><ion-icon name="arrow-back-circle-outline"></ion-icon>Back</ion-button>
+        <ion-button class="right" color="light" (click)="moveCamera(5)"><ion-icon name="arrow-forward-circle-outline"></ion-icon>Next</ion-button>
+      </div>
+    </ogmp-marker>
 
 
-        <img src='assets/home/cafe6.jpg' align='right' />
-        <h3>Good News Coffee Shop</h3>
-        <section>
-          Artisanal coffee, plus healthy salads, rolls & cakes, for breakfast & lunch in a light-filled cafe.
-        </section>
 
-      </ogmp-marker>
+    <ogmp-marker
+      #marker
+      (click)="onMarkerClick($event)"
+      class="cafe"
+      position="48.88065735202147, 2.340754520227556">
+
+      <h3>Work on cross platforms!</h3>
+      <section>
+        Support the <a href="https://capacitorjs.com" target="_blank">capacitor by Ionic</a> and
+        the <a href="https://cordova.apache.org" target="_blank">Apache Cordova</a> cross platforms!
+        Other cross platforms, like ReactNative, NativeScript, and others, will be planned!
+      </section>
+      <div class="navigation">
+        <ion-button class="right" color="light" (click)="moveCamera(4)"><ion-icon name="arrow-back-circle-outline"></ion-icon>Back</ion-button>
+        <ion-button class="right" color="light" (click)="setCameraToOverview()"><ion-icon name="arrow-forward-circle-outline"></ion-icon>Finish</ion-button>
+      </div>
+
+    </ogmp-marker>
 
 
-      <ogmp-marker
-        class="cafe"
-        (click)="onMarkerClick($event)"
-        position="48.86870067097262, 2.359778781391679">
-
-
-        <img src='assets/home/cafe7.jpg' align='right' />
-        <h3>Café Petite</h3>
-        <section>
-          Brasserie classics with a focus on seasonality, plus breakfast & coffee, in a simple setting.
-        </section>
-
-      </ogmp-marker>
-    </ogmp-map-view>
-
-    <markdown ngPreserveWhitespaces>
-      # Welcome to new maps plugin!
-    </markdown>
-  </div>
+  </ogmp-map-view>
 </ion-content>

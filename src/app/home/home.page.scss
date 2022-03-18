@@ -1,38 +1,17 @@
 ion-content {
   --overflow: hidden;
 }
-#container {
-  margin-top: 56px;
-  height: 100%;
+#mapCanvas {
   position: relative;
-
-  strong {
-    font-size: 20px;
-    line-height: 26px;
-  }
-
-  p {
-    font-size: 16px;
-    line-height: 22px;
-
-    color: #8c8c8c;
-
-    margin: 0;
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  #mapCanvas {
-    position: relative;
-    left: 0px;
-    right: 0px;
-    height: calc(50% - 56px);
-  }
+  margin-top: 56px;
+  left: 0px;
+  right: 0px;
+  height: calc(100% - 56px);
 }
 
-
+.flex {
+  display: flex;
+}
 
 
 .cafe {
@@ -48,17 +27,36 @@ ion-content {
   border-radius: 10px;
 }
 
+.navigation {
+  height: 40px;
+  display: flex;
+
+  .left {
+    margin-left: 0px;
+    margin-right: auto;
+  }
+
+  .right {
+    margin-left: auto;
+    margin-right: 0px;
+  }
+}
 ogmp-info-window {
-  text-align: center;
+  text-align: left;
 
   section {
-    display: flex;
-    max-width: 400px;
+    max-width: 300px;
     text-align: left;
     padding: 10px;
+  }
+  img {
+    border-radius: 15%;
+    width: 100px;
+    float: right;
+    margin-right: 0.5em;
   }
 }
 
 markdown {
-  color: white;
+  color: var(--color, black);
 }
